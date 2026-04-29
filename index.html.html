@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>АжилМН — Цагын ажлын платформ</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mongolian&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #16a34a;
+  --green-dark: #15803d;
+  --green-light: #dcfce7;
+  --green-mid: #4ade80;
+  --orange: #f97316;
+  --orange-light: #fff7ed;
+  --bg: #f8fafc;
+  --white: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --text-light: #94a3b8;
+  --border: #e2e8f0;
+  --border-focus: #16a34a;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* ── NAV ── */
+.navbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--green);
+  text-decoration: none;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+.logo span { color: var(--orange); }
+.nav-links {
+  display: flex;
+  gap: 4px;
+  flex: 1;
+}
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: var(--radius);
+  transition: all .15s;
+  cursor: pointer;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--green); background: var(--green-light); }
+.nav-right { display: flex; gap: 10px; align-items: center; margin-left: auto; }
+.btn-ghost {
+  background: none;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all .15s;
+}
+.btn-ghost:hover { border-color: var(--green); color: var(--green); }
+.btn-primary {
+  background: var(--green);
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background .15s;
+}
+.btn-primary:hover { background: var(--green-dark); }
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #064e3b 100%);
+  padding: 72px 24px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 60% 50%, rgba(22,163,74,.25) 0%, transparent 70%);
+}
+.hero-tag {
+  display: inline-block;
+  background: rgba(74,222,128,.15);
+  color: var(--green-mid);
+  border: 1px solid rgba(74,222,128,.3);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 20px;
+}
+.hero h1 {
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  position: relative;
+}
+.hero h1 em { font-style: normal; color: var(--green-mid); }
+.hero p {
+  color: #94a3b8;
+  font-size: 16px;
+  margin-bottom: 36px;
+  position: relative;
+}
+.search-bar {
+  max-width: 620px;
+  margin: 0 auto 28px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  padding: 6px 6px 6px 18px;
+  gap: 10px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.25);
+  position: relative;
+}
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text);
+  background: transparent;
+}
+.search-bar input::placeholder { color: var(--text-light); }
+.search-divider { width: 1px; height: 28px; background: var(--border); }
+.search-loc {
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text-muted);
+  background: transparent;
+  width: 160px;
+}
+.search-btn {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 22px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.search-btn:hover { background: var(--green-dark); }
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 36px;
+  position: relative;
+}
+.hero-stat { text-align: center; }
+.hero-stat .num { font-size: 24px; font-weight: 700; color: #fff; }
+.hero-stat .lbl { font-size: 12px; color: #64748b; margin-top: 2px; }
+
+/* ── CATEGORIES ── */
+.cats-section { padding: 40px 24px; max-width: 1200px; margin: 0 auto; }
+.section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+.section-title { font-size: 20px; font-weight: 700; }
+.see-all { font-size: 13px; color: var(--green); font-weight: 500; cursor: pointer; text-decoration: none; }
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.cat-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 16px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+}
+.cat-card:hover, .cat-card.active {
+  border-color: var(--green);
+  background: var(--green-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.cat-icon { font-size: 28px; margin-bottom: 8px; }
+.cat-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.cat-count { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+
+/* ── JOBS SECTION ── */
+.jobs-section { padding: 0 24px 48px; max-width: 1200px; margin: 0 auto; }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.filter-select {
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  padding: 7px 12px;
+  border-radius: var(--radius-full);
+  outline: none;
+  cursor: pointer;
+}
+.filter-select:focus { border-color: var(--green); }
+.jobs-count { margin-left: auto; font-size: 13px; color: var(--text-muted); }
+
+/* ── JOB CARD ── */
+.jobs-grid { display: flex; flex-direction: column; gap: 12px; }
+.job-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  cursor: pointer;
+  transition: all .18s;
+  text-decoration: none;
+  color: inherit;
+}
+.job-card:hover {
+  border-color: var(--green);
+  box-shadow: var(--shadow-md);
+  transform: translateX(3px);
+}
+.job-card.featured { border-left: 3px solid var(--orange); }
+.company-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+.job-main { flex: 1; min-width: 0; }
+.job-top { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.job-title { font-size: 16px; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+.badge-featured { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+.badge-new { background: var(--green-light); color: var(--green-dark); border: 1px solid #bbf7d0; }
+.job-company { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+.job-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: var(--bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.job-right { text-align: right; flex-shrink: 0; }
+.job-pay { font-size: 17px; font-weight: 700; color: var(--green); }
+.job-pay-unit { font-size: 11px; color: var(--text-light); font-weight: 400; }
+.job-time { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+.apply-now {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background .15s;
+}
+.apply-now:hover { background: var(--green-dark); }
+
+/* ── POST JOB PAGE ── */
+.form-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+.form-title { font-size: 26px; font-weight: 700; margin-bottom: 6px; }
+.form-subtitle { color: var(--text-muted); font-size: 14px; margin-bottom: 32px; }
+.form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+.form-card-title { font-size: 16px; font-weight: 700; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-group:last-child { margin-bottom: 0; }
+label { display: block; font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+label span { color: var(--orange); }
+input[type=text], input[type=number], input[type=email], input[type=tel], input[type=password], select, textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--white);
+  outline: none;
+  transition: border-color .15s;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--green-border, var(--green)); }
+textarea { min-height: 100px; resize: vertical; }
+.form-submit {
+  width: 100%;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background .15s;
+}
+.form-submit:hover { background: var(--green-dark); }
+.success-banner {
+  background: var(--green-light);
+  border: 1px solid #bbf7d0;
+  color: var(--green-dark);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  display: none;
+  margin-top: 16px;
+}
+
+/* ── AUTH PAGE ── */
+.auth-page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+.auth-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: var(--shadow-md);
+}
+.auth-title { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.auth-sub { font-size: 13px; color: var(--text-muted); margin-bottom: 28px; }
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.auth-tab {
+  padding: 10px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--bg);
+  color: var(--text-muted);
+  border: none;
+  font-family: inherit;
+  transition: all .15s;
+}
+.auth-tab.active { background: var(--green); color: #fff; }
+.auth-divider {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-light);
+  margin: 20px 0;
+  position: relative;
+}
+.auth-divider::before, .auth-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: calc(50% - 24px);
+  height: 1px;
+  background: var(--border);
+}
+.auth-divider::before { left: 0; }
+.auth-divider::after { right: 0; }
+
+/* ── DETAIL PAGE ── */
+.detail-page { max-width: 900px; margin: 0 auto; padding: 32px 24px; display: none; }
+.detail-page.active { display: grid; grid-template-columns: 1fr 320px; gap: 24px; }
+.detail-main-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+.detail-sidebar { display: flex; flex-direction: column; gap: 16px; }
+.sidebar-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+.detail-company-row { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+.detail-logo {
+  width: 64px; height: 64px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px;
+  flex-shrink: 0;
+}
+.detail-title { font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.detail-company { font-size: 15px; color: var(--text-muted); }
+.detail-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 20px 0; padding: 20px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.meta-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-muted); }
+.meta-icon { font-size: 16px; }
+.detail-section-title { font-size: 16px; font-weight: 700; margin: 20px 0 10px; }
+.detail-desc { font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+.detail-desc ul { padding-left: 18px; margin-top: 8px; }
+.detail-desc li { margin-bottom: 4px; }
+.apply-big {
+  width: 100%;
+  background: var(--green);
+  color: #fff;
+  border: none;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 14px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background .15s;
+  margin-bottom: 10px;
+}
+.apply-big:hover { background: var(--green-dark); }
+.save-btn {
+  width: 100%;
+  background: none;
+  border: 1.5px solid var(--border);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--text);
+  transition: all .15s;
+}
+.save-btn:hover { border-color: var(--green); color: var(--green); }
+.pay-big { font-size: 28px; font-weight: 700; color: var(--green); }
+.pay-unit { font-size: 14px; color: var(--text-light); font-weight: 400; }
+
+/* ── PROFILE ── */
+.profile-page { max-width: 1000px; margin: 0 auto; padding: 32px 24px; }
+.profile-header-card {
+  background: linear-gradient(135deg, #0f172a, #064e3b);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 20px;
+}
+.profile-avatar {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--green);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px; font-weight: 700; color: #fff;
+  flex-shrink: 0;
+}
+.profile-name { font-size: 22px; font-weight: 700; color: #fff; }
+.profile-role { font-size: 14px; color: #94a3b8; margin-top: 4px; }
+.profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.profile-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+.profile-card-title { font-size: 15px; font-weight: 700; margin-bottom: 14px; }
+.profile-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.profile-row:last-child { border-bottom: none; }
+.profile-row span:first-child { color: var(--text-muted); }
+
+/* Back btn */
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500; color: var(--text-muted);
+  cursor: pointer; margin-bottom: 20px;
+  background: none; border: none; font-family: inherit;
+  padding: 0;
+}
+.back-btn:hover { color: var(--green); }
+</style>
+
+<!-- ── NAVBAR ── -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a class="logo" href="#" onclick="showPage('home')">Ажил<span>МН</span></a>
+    <div class="nav-links">
+      <a onclick="showPage('home')" id="nav-home" class="active">Нүүр</a>
+      <a onclick="showPage('jobs-page')" id="nav-jobs">Ажлын зарууд</a>
+      <a onclick="showPage('post-page')" id="nav-post">Зар нэмэх</a>
+      <a onclick="showPage('profile-page')" id="nav-profile">Профайл</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn-ghost" onclick="showPage('login-page')">Нэвтрэх</button>
+      <button class="btn-primary" onclick="showPage('register-page')">Бүртгүүлэх</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- HOME PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="home" class="page active">
+
+  <div class="hero">
+    <div class="hero-tag">🇲🇳 Монголын #1 цагын ажлын платформ</div>
+    <h1>Таны дараагийн ажлыг<br><em>энд олоорой</em></h1>
+    <p>Улаанбаатар болон орон нутгийн шилдэг цагийн ажлуудыг нэг дор</p>
+    <div class="search-bar">
+      <span style="font-size:18px;">🔍</span>
+      <input type="text" id="heroSearch" placeholder="Ажлын нэр, мэргэжил..." />
+      <div class="search-divider"></div>
+      <select class="search-loc" id="heroLoc">
+        <option value="">Бүх байршил</option>
+        <option>Улаанбаатар</option>
+        <option>Сүхбаатар дүүрэг</option>
+        <option>Хан-Уул дүүрэг</option>
+        <option>Баянзүрх дүүрэг</option>
+        <option>Чингэлтэй дүүрэг</option>
+        <option>Баянгол дүүрэг</option>
+        <option>Сонгинохайрхан</option>
+        <option>Налайх</option>
+        <option>Дархан</option>
+        <option>Эрдэнэт</option>
+      </select>
+      <button class="search-btn" onclick="doSearch()">Ажил хайх</button>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="num">1,248</div><div class="lbl">Нийт зар</div></div>
+      <div class="hero-stat"><div class="num">4,300+</div><div class="lbl">Бүртгэлтэй хэрэглэгч</div></div>
+      <div class="hero-stat"><div class="num">320</div><div class="lbl">Ажил олгогч</div></div>
+      <div class="hero-stat"><div class="num">89%</div><div class="lbl">Амжилтын хувь</div></div>
+    </div>
+  </div>
+
+  <!-- Categories -->
+  <div class="cats-section">
+    <div class="section-header">
+      <div class="section-title">Ажлын ангилал</div>
+      <a class="see-all" onclick="showPage('jobs-page')">Бүгдийг харах →</a>
+    </div>
+    <div class="cats-grid">
+      <div class="cat-card" onclick="filterAndGo('Тээвэр')"><div class="cat-icon">🚗</div><div class="cat-name">Тээвэр</div><div class="cat-count">124 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo('Худалдаа')"><div class="cat-icon">🛒</div><div class="cat-name">Худалдаа</div><div class="cat-count">87 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo('IT')"><div class="cat-icon">💻</div><div class="cat-name">IT / Технологи</div><div class="cat-count">65 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo('Хоол')"><div class="cat-icon">🍽️</div><div class="cat-name">Хоол, рестораны</div><div class="cat-count">98 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo('Дизайн')"><div class="cat-icon">🎨</div><div class="cat-name">Дизайн</div><div class="cat-count">43 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo('Барилга')"><div class="cat-icon">🏗️</div><div class="cat-name">Барилга</div><div class="cat-count">71 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo('Боловсрол')"><div class="cat-icon">📚</div><div class="cat-name">Боловсрол</div><div class="cat-count">52 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo('Эрүүл мэнд')"><div class="cat-icon">🏥</div><div class="cat-name">Эрүүл мэнд</div><div class="cat-count">36 ажил</div></div>
+    </div>
+  </div>
+
+  <!-- Featured Jobs -->
+  <div class="jobs-section">
+    <div class="section-header">
+      <div class="section-title">Шинэ зарууд</div>
+      <a class="see-all" onclick="showPage('jobs-page')">Бүгдийг харах →</a>
+    </div>
+    <div class="jobs-grid" id="homeJobsGrid"></div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- JOBS LIST PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="jobs-page" class="page">
+  <div class="jobs-section" style="padding-top:32px;">
+    <div class="section-header" style="margin-bottom:16px;">
+      <div class="section-title" id="jobsPageTitle">Бүх ажлын зарууд</div>
+    </div>
+    <div class="filter-bar">
+      <select class="filter-select" id="catFilter" onchange="renderJobsPage()">
+        <option value="">Бүх ангилал</option>
+        <option>Тээвэр</option><option>Худалдаа</option><option>IT</option>
+        <option>Хоол</option><option>Дизайн</option><option>Барилга</option>
+        <option>Боловсрол</option><option>Эрүүл мэнд</option>
+      </select>
+      <select class="filter-select" id="locFilter" onchange="renderJobsPage()">
+        <option value="">Бүх байршил</option>
+        <option>Улаанбаатар</option><option>Дархан</option><option>Эрдэнэт</option>
+      </select>
+      <select class="filter-select" id="payFilter" onchange="renderJobsPage()">
+        <option value="">Цалин (бүгд)</option>
+        <option value="10000">10,000₮+</option>
+        <option value="20000">20,000₮+</option>
+        <option value="30000">30,000₮+</option>
+      </select>
+      <div class="jobs-count" id="jobsCount"></div>
+    </div>
+    <div class="jobs-grid" id="allJobsGrid"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- JOB DETAIL PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="detail-page" class="page">
+  <div style="max-width:900px; margin:0 auto; padding:32px 24px 0;">
+    <button class="back-btn" onclick="goBack()">← Буцах</button>
+  </div>
+  <div id="detailContent" style="max-width:900px; margin:0 auto; padding:0 24px 48px; display:grid; grid-template-columns:1fr 300px; gap:24px;"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- POST JOB PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="post-page" class="page">
+  <div class="form-page">
+    <div class="form-title">Ажлын зар оруулах</div>
+    <div class="form-subtitle">Мэдээллийг бүрэн, үнэн зөв бөглөнө үү</div>
+
+    <div class="form-card">
+      <div class="form-card-title">Ажлын үндсэн мэдээлэл</div>
+      <div class="form-group">
+        <label>Ажлын нэр <span>*</span></label>
+        <input type="text" id="fJobName" placeholder="Жишээ: Хүргэлтийн жолооч, Зөөгч...">
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="margin:0">
+          <label>Ангилал <span>*</span></label>
+          <select id="fCat">
+            <option value="">Сонгох...</option>
+            <option>Тээвэр</option><option>Худалдаа</option><option>IT</option>
+            <option>Хоол</option><option>Дизайн</option><option>Барилга</option>
+            <option>Боловсрол</option><option>Эрүүл мэнд</option><option>Бусад</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin:0">
+          <label>Ажлын хэлбэр</label>
+          <select id="fType">
+            <option>Цагийн ажил</option>
+            <option>Бүтэн цагийн</option>
+            <option>Зөвлөх</option>
+            <option>Дадлага</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="margin:0">
+          <label>Цалин (₮/цаг) <span>*</span></label>
+          <input type="number" id="fPay" placeholder="15000">
+        </div>
+        <div class="form-group" style="margin:0">
+          <label>Байршил <span>*</span></label>
+          <select id="fLoc">
+            <option>Улаанбаатар</option>
+            <option>Сүхбаатар дүүрэг</option>
+            <option>Хан-Уул дүүрэг</option>
+            <option>Баянзүрх дүүрэг</option>
+            <option>Дархан</option><option>Эрдэнэт</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-card-title">Дэлгэрэнгүй мэдээлэл</div>
+      <div class="form-group">
+        <label>Ажлын тайлбар <span>*</span></label>
+        <textarea id="fDesc" placeholder="Ажилчнаас юу хийхийг хүлээж байгааг тайлбарлана уу..."></textarea>
+      </div>
+      <div class="form-group">
+        <label>Шаардлага</label>
+        <textarea id="fReq" placeholder="Ажилчинд тавих шаардлагууд..." style="min-height:70px;"></textarea>
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="margin:0">
+          <label>Ажлын цаг</label>
+          <input type="text" id="fHours" placeholder="Жишээ: 09:00–18:00">
+        </div>
+        <div class="form-group" style="margin:0">
+          <label>Ажиллах өдрүүд</label>
+          <input type="text" id="fDays" placeholder="Жишээ: Даваа–Баасан">
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card">
+      <div class="form-card-title">Холбоо барих</div>
+      <div class="form-row">
+        <div class="form-group" style="margin:0">
+          <label>Компанийн нэр</label>
+          <input type="text" id="fCompany" placeholder="Таны компани">
+        </div>
+        <div class="form-group" style="margin:0">
+          <label>Утасны дугаар <span>*</span></label>
+          <input type="tel" id="fPhone" placeholder="99001122">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>И-мэйл</label>
+        <input type="email" id="fEmail" placeholder="info@company.mn">
+      </div>
+    </div>
+
+    <button class="form-submit" onclick="submitJob()">✓ Зар нийтлэх</button>
+    <div class="success-banner" id="postSuccess">🎉 Таны зар амжилттай нийтлэгдлээ! Ажил хайгчид харах болно.</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- LOGIN PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="login-page" class="page">
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-title">Нэвтрэх</div>
+      <div class="auth-sub">АжилМН-д тавтай морил</div>
+      <div class="form-group">
+        <label>Утасны дугаар эсвэл и-мэйл</label>
+        <input type="text" placeholder="99001122 эсвэл email@mail.mn">
+      </div>
+      <div class="form-group">
+        <label>Нууц үг</label>
+        <input type="password" placeholder="••••••••">
+      </div>
+      <button class="form-submit" onclick="fakeLogin()" style="margin-top:4px;">Нэвтрэх</button>
+      <div class="auth-divider">эсвэл</div>
+      <p style="text-align:center; font-size:13px; color:var(--text-muted);">
+        Бүртгэл байхгүй юу? <a onclick="showPage('register-page')" style="color:var(--green);cursor:pointer;font-weight:600;">Бүртгүүлэх</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- REGISTER PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="register-page" class="page">
+  <div class="auth-page">
+    <div class="auth-card">
+      <div class="auth-title">Бүртгүүлэх</div>
+      <div class="auth-sub">Үнэгүй бүртгүүлж эхэлнэ үү</div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="switchAuthTab(this,'worker')">Ажил хайгч</button>
+        <button class="auth-tab" onclick="switchAuthTab(this,'employer')">Ажил олгогч</button>
+      </div>
+      <div class="form-group">
+        <label>Овог, нэр</label>
+        <input type="text" placeholder="Таны бүтэн нэр">
+      </div>
+      <div class="form-group">
+        <label>Утасны дугаар</label>
+        <input type="tel" placeholder="99001122">
+      </div>
+      <div class="form-group">
+        <label>И-мэйл</label>
+        <input type="email" placeholder="email@mail.mn">
+      </div>
+      <div class="form-group">
+        <label>Нууц үг</label>
+        <input type="password" placeholder="8+ тэмдэгт">
+      </div>
+      <button class="form-submit" onclick="fakeRegister()">Бүртгүүлэх →</button>
+      <p style="text-align:center; font-size:13px; color:var(--text-muted); margin-top:16px;">
+        Бүртгэлтэй юу? <a onclick="showPage('login-page')" style="color:var(--green);cursor:pointer;font-weight:600;">Нэвтрэх</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PROFILE PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="profile-page" class="page">
+  <div class="profile-page">
+    <div class="profile-header-card">
+      <div class="profile-avatar">Б</div>
+      <div>
+        <div class="profile-name">Болд Дорж</div>
+        <div class="profile-role">Ажил хайгч • Улаанбаатар</div>
+      </div>
+    </div>
+    <div class="profile-grid">
+      <div class="profile-card">
+        <div class="profile-card-title">Хувийн мэдээлэл</div>
+        <div class="profile-row"><span>Нэр</span><span>Болд Дорж</span></div>
+        <div class="profile-row"><span>Утас</span><span>9900-1122</span></div>
+        <div class="profile-row"><span>И-мэйл</span><span>bold@mail.mn</span></div>
+        <div class="profile-row"><span>Байршил</span><span>УБ, Сүхбаатар</span></div>
+      </div>
+      <div class="profile-card">
+        <div class="profile-card-title">Статистик</div>
+        <div class="profile-row"><span>Өргөдөл гаргасан</span><span style="font-weight:600;color:var(--green);">8</span></div>
+        <div class="profile-row"><span>Хадгалсан ажил</span><span style="font-weight:600;">12</span></div>
+        <div class="profile-row"><span>Ярилцлагын урилга</span><span style="font-weight:600;color:var(--orange);">3</span></div>
+        <div class="profile-row"><span>Бүртгүүлсэн огноо</span><span>2025.01.15</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const JOBS = [
+  { id:1, title:'Хүргэлтийн жолооч', company:'Улаанбаатар Экспресс', cat:'Тээвэр', loc:'Улаанбаатар', pay:18000, icon:'🚗', featured:true, time:'2 цагийн өмнө', desc:'Хоол хүргэлт болон бусад бараа хүргэлт. Автомашинтай байх шаардлагатай.', reqs:['Жолооны үнэмлэхтэй', 'GPS ашиглах чадвар', '18 насанд хүрсэн'], hours:'09:00–21:00', days:'7 хоног', badge:'new' },
+  { id:2, title:'Кассын ажилтан', company:'Номин Супермаркет', cat:'Худалдаа', loc:'Улаанбаатар', pay:12000, icon:'🛒', featured:false, time:'5 цагийн өмнө', desc:'Касст ажиллах, үйлчлүүлэгчдэд үйлчлэх.', reqs:['Тоон мэдлэг сайтай', 'Найрсаг байдал'], hours:'08:00–20:00', days:'Даваа–Баасан', badge:'new' },
+  { id:3, title:'Фронтенд хөгжүүлэгч', company:'DataMon LLC', cat:'IT', loc:'Улаанбаатар', pay:45000, icon:'💻', featured:true, time:'1 өдрийн өмнө', desc:'React болон Next.js ашиглан вэб хөгжүүлэх.', reqs:['React мэдлэг', 'HTML/CSS/JS', '1+ жилийн туршлага'], hours:'Уян хатан', days:'Алсаас ажиллах боломжтой', badge:'featured' },
+  { id:4, title:'Зөөгч', company:'Лунд Рестораны', cat:'Хоол', loc:'Улаанбаатар', pay:10000, icon:'🍽️', featured:false, time:'3 цагийн өмнө', desc:'Рестораны зочдод хоол зөөх, хүлээн авах.', reqs:['Найрсаг байдал', 'Хурдан ажиллах'], hours:'11:00–22:00', days:'Лха–Ням', badge:'new' },
+  { id:5, title:'Лого дизайнер', company:'Freelance', cat:'Дизайн', loc:'Алсаас', pay:30000, icon:'🎨', featured:false, time:'2 өдрийн өмнө', desc:'Брэнд болон лого дизайн хийх.', reqs:['Adobe Illustrator', 'Figma', 'Portfolio шаардлагатай'], hours:'Уян хатан', days:'Чөлөөтэй', badge:'' },
+  { id:6, title:'Барилгын ажилтан', company:'МонБилд ХХК', cat:'Барилга', loc:'Улаанбаатар', pay:25000, icon:'🏗️', featured:false, time:'6 цагийн өмнө', desc:'Барилгын ажилд туслах, материал зөөх.', reqs:['Биеийн чийрэг байдал', '20+ нас'], hours:'08:00–18:00', days:'Даваа–Бямба', badge:'' },
+  { id:7, title:'Англи хэлний багш', company:'Globe Academy', cat:'Боловсрол', loc:'Улаанбаатар', pay:20000, icon:'📚', featured:false, time:'1 өдрийн өмнө', desc:'Сургуулийн насны хүүхдүүдэд англи хэл заах.', reqs:['Англи хэлний мэдлэг (C1+)', 'Багшлах дур сонирхол'], hours:'14:00–18:00', days:'Даваа–Баасан', badge:'new' },
+  { id:8, title:'Сувилагч туслах', company:'Улаанбаатар Эмнэлэг', cat:'Эрүүл мэнд', loc:'Улаанбаатар', pay:22000, icon:'🏥', featured:true, time:'4 цагийн өмнө', desc:'Сувилагч нарт туслах, өвчтөнүүдэд анхаарал халамж тавих.', reqs:['Анагаах ухааны суурь мэдлэг', 'Тэвчээр', 'Хариуцлага'], hours:'Ээлжийн', days:'7 хоног', badge:'new' },
+];
+
+let currentFilter = '';
+let previousPage = 'home';
+
+function renderCards(jobs, containerId, limit) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  const list = limit ? jobs.slice(0, limit) : jobs;
+  el.innerHTML = list.map(j => `
+    <div class="job-card${j.featured?' featured':''}" onclick="showDetail(${j.id})">
+      <div class="company-logo">${j.icon}</div>
+      <div class="job-main">
+        <div class="job-top">
+          <div class="job-title">${j.title}</div>
+          ${j.badge==='featured'?'<span class="badge badge-featured">Онцлох</span>':j.badge==='new'?'<span class="badge badge-new">Шинэ</span>':''}
+        </div>
+        <div class="job-company">${j.company}</div>
+        <div class="job-tags">
+          <span class="tag">📍 ${j.loc}</span>
+          <span class="tag">🏷️ ${j.cat}</span>
+          <span class="tag">⏰ ${j.hours||'Уян хатан'}</span>
+        </div>
+      </div>
+      <div class="job-right">
+        <div class="job-pay">${j.pay.toLocaleString()}₮ <span class="job-pay-unit">/цаг</span></div>
+        <div class="job-time">${j.time}</div>
+        <button class="apply-now" onclick="event.stopPropagation();showDetail(${j.id})">Дэлгэрэнгүй</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderJobsPage() {
+  const cat = document.getElementById('catFilter').value;
+  const loc = document.getElementById('locFilter').value;
+  const pay = parseInt(document.getElementById('payFilter').value) || 0;
+  let filtered = JOBS.filter(j =>
+    (!cat || j.cat === cat) &&
+    (!loc || j.loc.includes(loc)) &&
+    j.pay >= pay
+  );
+  document.getElementById('jobsCount').textContent = filtered.length + ' ажил олдлоо';
+  renderCards(filtered, 'allJobsGrid');
+}
+
+function showDetail(id) {
+  const j = JOBS.find(x => x.id === id);
+  if (!j) return;
+  document.getElementById('detailContent').innerHTML = `
+    <div class="detail-main-card">
+      <div class="detail-company-row">
+        <div class="detail-logo">${j.icon}</div>
+        <div>
+          <div class="detail-title">${j.title}</div>
+          <div class="detail-company">${j.company}</div>
+        </div>
+      </div>
+      <div class="detail-meta">
+        <div class="meta-item"><span class="meta-icon">📍</span>${j.loc}</div>
+        <div class="meta-item"><span class="meta-icon">🏷️</span>${j.cat}</div>
+        <div class="meta-item"><span class="meta-icon">⏰</span>${j.hours}</div>
+        <div class="meta-item"><span class="meta-icon">📅</span>${j.days}</div>
+      </div>
+      <div class="detail-section-title">Ажлын тайлбар</div>
+      <div class="detail-desc">${j.desc}</div>
+      <div class="detail-section-title">Шаардлага</div>
+      <div class="detail-desc"><ul>${(j.reqs||[]).map(r=>`<li>${r}</li>`).join('')}</ul></div>
+    </div>
+    <div>
+      <div class="sidebar-card" style="margin-bottom:16px;">
+        <div style="font-size:13px;color:var(--text-muted);margin-bottom:4px;">Цалин</div>
+        <div class="pay-big">${j.pay.toLocaleString()}₮ <span class="pay-unit">/цаг</span></div>
+        <button class="apply-big" style="margin-top:16px;" onclick="applyJob()">Өргөдөл гаргах</button>
+        <button class="save-btn">♡ Хадгалах</button>
+      </div>
+      <div class="sidebar-card">
+        <div style="font-size:14px;font-weight:700;margin-bottom:12px;">Компанийн мэдээлэл</div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.7;">${j.company}<br>📍 ${j.loc}</div>
+      </div>
+    </div>
+  `;
+  showPage('detail-page');
+}
+
+function applyJob() {
+  alert('Өргөдөл амжилттай илгээгдлээ! Ажил олгогч тантай холбогдох болно.');
+}
+
+function showPage(name) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const map = { home:'nav-home', 'jobs-page':'nav-jobs', 'post-page':'nav-post', 'profile-page':'nav-profile' };
+  if (map[name]) document.getElementById(map[name]).classList.add('active');
+  if (name === 'jobs-page') renderJobsPage();
+  window.scrollTo(0,0);
+}
+
+function filterAndGo(cat) {
+  showPage('jobs-page');
+  document.getElementById('catFilter').value = cat;
+  renderJobsPage();
+}
+
+function doSearch() {
+  showPage('jobs-page');
+  renderJobsPage();
+}
+
+function goBack() {
+  showPage('jobs-page');
+}
+
+function submitJob() {
+  const name = document.getElementById('fJobName').value.trim();
+  if (!name) { alert('Ажлын нэрийг оруулна уу'); return; }
+  document.getElementById('postSuccess').style.display = 'block';
+  setTimeout(() => { document.getElementById('postSuccess').style.display = 'none'; }, 4000);
+}
+
+function fakeLogin() { showPage('profile-page'); }
+function fakeRegister() { showPage('profile-page'); }
+
+function switchAuthTab(el, type) {
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// Init
+renderCards(JOBS, 'homeJobsGrid', 6);
+renderJobsPage();
+</script>
