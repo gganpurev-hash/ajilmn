@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)file:///C:/Users/NewTech/Downloads/index_2.html -->
+<html lang="mn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webee — Цагын ажлын платформ</title>
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+:root{--primary:#f97316;--primary-dark:#ea580c;--primary-light:#fff7ed;--primary-mid:#fed7aa;--green:#22c55e;--green-light:#f0fdf4;--red:#ef4444;--bg:#f8fafc;--white:#ffffff;--text:#0f172a;--text-2:#475569;--text-3:#94a3b8;--border:#e2e8f0;--shadow:0 1px 3px rgba(0,0,0,0.08);--shadow-md:0 4px 20px rgba(0,0,0,0.08);--r:10px;--rl:16px}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.6}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+.nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 20px;height:60px;display:flex;align-items:center;gap:24px}
+.logo{font-size:20px;font-weight:800;color:var(--primary);letter-spacing:-0.5px;flex-shrink:0}
+.logo span{color:var(--text)}
+.nav-links{display:flex;gap:2px;flex:1}
+.nav-links a{color:var(--text-2);font-size:14px;font-weight:500;padding:6px 12px;border-radius:var(--r);transition:all .15s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--primary);background:var(--primary-light)}
+.nav-right{display:flex;gap:8px;margin-left:auto;align-items:center}
+.btn-ghost{background:none;border:1.5px solid var(--border);color:var(--text);font-size:13px;font-weight:600;padding:7px 16px;border-radius:50px;transition:all .15s}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+.btn-primary{background:var(--primary);border:none;color:#fff;font-size:13px;font-weight:700;padding:8px 18px;border-radius:50px;transition:background .15s}
+.btn-primary:hover{background:var(--primary-dark)}
+.page{display:none}.page.active{display:block}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 60%,#431407 100%);padding:60px 20px 50px;text-align:center;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 80%,rgba(249,115,22,.2) 0%,transparent 65%)}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(249,115,22,.15);border:1px solid rgba(249,115,22,.3);color:#fb923c;font-size:12px;font-weight:700;letter-spacing:.05em;padding:5px 14px;border-radius:50px;margin-bottom:20px;position:relative}
+.hero h1{font-size:clamp(26px,5vw,46px);font-weight:800;color:#fff;line-height:1.15;margin-bottom:12px;position:relative}
+.hero h1 em{font-style:normal;color:#fb923c}
+.hero-sub{color:#94a3b8;font-size:15px;margin-bottom:32px;position:relative}
+.search-wrap{max-width:580px;margin:0 auto 24px;position:relative}
+.search-bar{background:var(--white);border-radius:var(--rl);display:flex;align-items:center;padding:6px 6px 6px 16px;gap:10px;box-shadow:0 8px 40px rgba(0,0,0,.3)}
+.search-bar input{flex:1;border:none;outline:none;font-family:inherit;font-size:15px;color:var(--text);background:transparent}
+.search-bar input::placeholder{color:var(--text-3)}
+.search-divider{width:1px;height:26px;background:var(--border);flex-shrink:0}
+.search-loc{border:none;outline:none;font-family:inherit;font-size:13px;color:var(--text-2);background:transparent;width:130px}
+.search-btn{background:var(--primary);color:#fff;border:none;border-radius:10px;padding:10px 20px;font-family:inherit;font-size:14px;font-weight:700;white-space:nowrap}
+.hero-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;position:relative}
+.hero-tag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#e2e8f0;font-size:12px;font-weight:500;padding:5px 12px;border-radius:50px;cursor:pointer;transition:all .15s}
+.hero-tag:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+.stats-bar{background:var(--white);border-bottom:1px solid var(--border)}
+.stats-inner{max-width:1100px;margin:0 auto;padding:16px 20px;display:flex;justify-content:center;gap:40px}
+.stat{text-align:center}
+.stat-num{font-size:22px;font-weight:800;color:var(--primary)}
+.stat-lbl{font-size:11px;color:var(--text-3);margin-top:2px;font-weight:500}
+.main{max-width:1100px;margin:0 auto;padding:28px 20px;display:grid;grid-template-columns:260px 1fr;gap:24px}
+.filter-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:20px;margin-bottom:16px}
+.filter-title{font-size:14px;font-weight:700;margin-bottom:14px}
+.filter-label{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-2);padding:6px 0;cursor:pointer}
+.filter-label input{accent-color:var(--primary);width:15px;height:15px}
+.filter-label:hover{color:var(--primary)}
+.count-badge{margin-left:auto;font-size:11px;color:var(--text-3)}
+.jobs-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.jobs-title{font-size:17px;font-weight:700}
+.jobs-count{font-size:13px;color:var(--text-3)}
+.sort-sel{border:1px solid var(--border);background:var(--white);font-family:inherit;font-size:13px;padding:6px 10px;border-radius:var(--r);outline:none;color:var(--text-2)}
+.jobs-list{display:flex;flex-direction:column;gap:10px}
+.job-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:18px 20px;display:flex;gap:16px;cursor:pointer;transition:all .18s}
+.job-card:hover{border-color:var(--primary);box-shadow:var(--shadow-md);transform:translateY(-1px)}
+.job-card.urgent{border-left:3px solid var(--red)}
+.job-icon{width:48px;height:48px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;background:var(--primary-light);border:1px solid var(--primary-mid)}
+.job-body{flex:1;min-width:0}
+.job-top{display:flex;align-items:flex-start;gap:8px;margin-bottom:4px;flex-wrap:wrap}
+.job-name{font-size:15px;font-weight:700;color:var(--text)}
+.badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:50px;flex-shrink:0;text-transform:uppercase}
+.badge-urgent{background:#fef2f2;color:#dc2626;border:1px solid #fecaca}
+.badge-new{background:var(--green-light);color:#16a34a;border:1px solid #bbf7d0}
+.badge-today{background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe}
+.job-company{font-size:13px;color:var(--text-2);margin-bottom:10px}
+.job-tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;font-weight:500;padding:3px 10px;border-radius:50px;background:var(--bg);color:var(--text-2);border:1px solid var(--border)}
+.job-right{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.job-pay{font-size:18px;font-weight:800;color:var(--primary)}
+.job-pay-unit{font-size:11px;color:var(--text-3);font-weight:400}
+.job-daily{font-size:12px;font-weight:600;color:var(--green);background:var(--green-light);padding:2px 8px;border-radius:50px;border:1px solid #bbf7d0}
+.job-time{font-size:11px;color:var(--text-3)}
+.apply-btn{background:var(--primary);color:#fff;border:none;font-size:12px;font-weight:700;padding:7px 16px;border-radius:50px;transition:background .15s;margin-top:4px}
+.apply-btn:hover{background:var(--primary-dark)}
+
+/* DETAIL */
+.detail-wrap{max-width:1100px;margin:0 auto;padding:24px 20px 48px;display:grid;grid-template-columns:1fr 300px;gap:24px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text-2);background:none;border:none;padding:0;margin-bottom:20px;transition:color .15s}
+.back-btn:hover{color:var(--primary)}
+.detail-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:28px}
+.detail-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:20px}
+.detail-icon{width:64px;height:64px;border-radius:var(--r);display:flex;align-items:center;justify-content:center;font-size:30px;background:var(--primary-light);border:1px solid var(--primary-mid);flex-shrink:0}
+.detail-title{font-size:22px;font-weight:800;margin-bottom:4px}
+.detail-company{font-size:14px;color:var(--text-2)}
+.detail-meta{display:flex;flex-wrap:wrap;gap:12px;padding:18px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:20px}
+.meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text-2)}
+.detail-sec-title{font-size:15px;font-weight:700;margin:20px 0 10px}
+.detail-desc{font-size:14px;color:var(--text-2);line-height:1.8}
+.detail-desc ul{padding-left:18px;margin-top:6px}
+.detail-desc li{margin-bottom:6px}
+.sidebar-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:20px;margin-bottom:16px}
+.big-pay{font-size:30px;font-weight:800;color:var(--primary)}
+.big-daily{font-size:14px;font-weight:600;color:var(--green);margin-top:4px}
+
+/* PAYMENT MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-bg.hidden{display:none}
+.modal{background:var(--white);border-radius:var(--rl);padding:28px;max-width:440px;width:100%;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:20px;color:var(--text-3);cursor:pointer}
+.modal-title{font-size:18px;font-weight:800;margin-bottom:6px}
+.modal-sub{font-size:13px;color:var(--text-2);margin-bottom:20px}
+.pay-amount{background:var(--primary-light);border:2px solid var(--primary);border-radius:var(--r);padding:16px;text-align:center;margin-bottom:20px}
+.pay-amount-num{font-size:32px;font-weight:800;color:var(--primary)}
+.pay-amount-lbl{font-size:13px;color:var(--primary-dark);margin-top:4px}
+.bank-info{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.bank-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.bank-row:last-child{border:none}
+.bank-row-label{color:var(--text-2);font-weight:500}
+.bank-row-value{font-weight:700;color:var(--text)}
+.copy-btn{background:var(--primary-light);border:1px solid var(--primary-mid);color:var(--primary);font-size:11px;font-weight:700;padding:3px 10px;border-radius:50px;cursor:pointer}
+.copy-btn:hover{background:var(--primary);color:#fff}
+.modal-steps{margin-bottom:20px}
+.modal-step{display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;font-size:13px;color:var(--text-2)}
+.step-num{width:24px;height:24px;border-radius:50%;background:var(--primary);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ref-input-wrap{margin-bottom:16px}
+.ref-input-wrap label{display:block;font-size:13px;font-weight:700;margin-bottom:6px}
+.ref-input{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r);font-family:inherit;font-size:14px;color:var(--text);outline:none;transition:border-color .15s}
+.ref-input:focus{border-color:var(--primary)}
+.confirm-btn{width:100%;background:var(--primary);color:#fff;border:none;font-family:inherit;font-size:15px;font-weight:700;padding:13px;border-radius:var(--r);transition:background .15s}
+.confirm-btn:hover{background:var(--primary-dark)}
+.success-screen{text-align:center;padding:20px 0}
+.success-icon{font-size:56px;margin-bottom:12px}
+.success-title{font-size:20px;font-weight:800;margin-bottom:8px;color:var(--green)}
+.success-sub{font-size:13px;color:var(--text-2);margin-bottom:20px}
+.contact-reveal{background:var(--green-light);border:2px solid var(--green);border-radius:var(--r);padding:16px;margin-bottom:16px}
+.contact-label{font-size:12px;color:#15803d;font-weight:600;margin-bottom:4px}
+.contact-value{font-size:22px;font-weight:800;color:#15803d}
+.contact-note{font-size:12px;color:#16a34a;margin-top:4px}
+.close-success{width:100%;background:var(--green);color:#fff;border:none;font-family:inherit;font-size:14px;font-weight:700;padding:12px;border-radius:var(--r)}
+
+/* CATS */
+.cats-section{padding:28px 20px;max-width:1100px;margin:0 auto}
+.sec-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.sec-title{font-size:18px;font-weight:800}
+.see-all{font-size:13px;color:var(--primary);font-weight:600;cursor:pointer}
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.cat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:18px 12px;text-align:center;cursor:pointer;transition:all .2s}
+.cat-card:hover{border-color:var(--primary);background:var(--primary-light);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.cat-icon{font-size:28px;margin-bottom:8px}
+.cat-name{font-size:12px;font-weight:700;color:var(--text)}
+.cat-cnt{font-size:11px;color:var(--text-3);margin-top:2px}
+
+/* POST */
+.post-wrap{max-width:680px;margin:0 auto;padding:36px 20px}
+.post-title{font-size:24px;font-weight:800;margin-bottom:6px}
+.post-sub{color:var(--text-2);font-size:14px;margin-bottom:28px}
+.form-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:24px;margin-bottom:16px}
+.form-card-title{font-size:15px;font-weight:700;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-group{margin-bottom:14px}
+.form-group:last-child{margin-bottom:0}
+label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+label span{color:var(--red)}
+input,select,textarea{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:var(--r);font-family:inherit;font-size:14px;color:var(--text);background:var(--white);outline:none;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--primary)}
+textarea{min-height:90px;resize:vertical}
+.form-submit{width:100%;background:var(--primary);color:#fff;border:none;font-family:inherit;font-size:15px;font-weight:700;padding:14px;border-radius:var(--r);transition:background .15s}
+.form-submit:hover{background:var(--primary-dark)}
+.success-msg{background:var(--green-light);border:1px solid #bbf7d0;color:#15803d;border-radius:var(--r);padding:14px;font-size:14px;font-weight:500;text-align:center;display:none;margin-top:14px}
+
+/* AUTH */
+.auth-wrap{min-height:calc(100vh - 60px);display:flex;align-items:center;justify-content:center;padding:32px 20px}
+.auth-card{background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:32px;width:100%;max-width:400px;box-shadow:var(--shadow-md)}
+.auth-title{font-size:22px;font-weight:800;margin-bottom:4px}
+.auth-sub{font-size:13px;color:var(--text-2);margin-bottom:24px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:22px}
+.auth-tab{padding:10px;text-align:center;font-size:13px;font-weight:700;background:var(--bg);color:var(--text-2);border:none;font-family:inherit;transition:all .15s}
+.auth-tab.active{background:var(--primary);color:#fff}
+</style>
+
+<!-- NAV -->
+</head><body><nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" onclick="showPage(&#39;home&#39;)">Webee</a>
+    <div class="nav-links">
+      <a onclick="showPage(&#39;home&#39;)" id="nav-home" class="active">Нүүр</a>
+      <a onclick="showPage(&#39;jobs-page&#39;)" id="nav-jobs">Ажлын зарууд</a>
+      <a onclick="showPage(&#39;post-page&#39;)" id="nav-post">Зар оруулах</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn-ghost" onclick="showPage(&#39;login-page&#39;)">Нэвтрэх</button>
+      <button class="btn-primary" onclick="showPage(&#39;reg-page&#39;)">Бүртгүүлэх</button>
+    </div>
+  </div>
+</nav>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-bg hidden" id="pay-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div class="hero-badge">🇲🇳 Webee — Цагын ажлын платформ</div>
+    <h1>Өнөөдөр ажил олоод<br><em>өнөөдөр цалин ав</em></h1>
+    <p class="hero-sub">Мэргэжил, диплом шаардахгүй — зүгээр л хүсэл эрмэлзэлтэй байхад л хангалттай</p>
+    <div class="search-wrap">
+      <div class="search-bar">
+        <span style="font-size:18px">🔍</span>
+        <input type="text" placeholder="Ажлын нэр хайх...">
+        <div class="search-divider"></div>
+        <select class="search-loc">
+          <option>Бүх байршил</option>
+          <option>Сүхбаатар дүүрэг</option>
+          <option>Хан-Уул дүүрэг</option>
+          <option>Баянзүрх дүүрэг</option>
+          <option>Чингэлтэй дүүрэг</option>
+          <option>Баянгол дүүрэг</option>
+          <option>Сонгинохайрхан</option>
+        </select>
+        <button class="search-btn" onclick="showPage(&#39;jobs-page&#39;)">Хайх</button>
+      </div>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag" onclick="filterAndGo(&#39;Хүргэлт&#39;)">🛵 Хүргэлт</span>
+      <span class="hero-tag" onclick="filterAndGo(&#39;Цэвэрлэгч&#39;)">🧹 Цэвэрлэгч</span>
+      <span class="hero-tag" onclick="filterAndGo(&#39;Ачигч&#39;)">📦 Ачигч</span>
+      <span class="hero-tag" onclick="filterAndGo(&#39;Промоутер&#39;)">📢 Промоутер</span>
+      <span class="hero-tag" onclick="filterAndGo(&#39;Харуул&#39;)">🔒 Харуул</span>
+      <span class="hero-tag" onclick="filterAndGo(&#39;Хоол&#39;)">🍽️ Хоол</span>
+    </div>
+  </div>
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat"><div class="stat-num">842</div><div class="stat-lbl">Нийт зар</div></div>
+      <div class="stat"><div class="stat-num">3,200+</div><div class="stat-lbl">Бүртгэлтэй хэрэглэгч</div></div>
+      <div class="stat"><div class="stat-num">240</div><div class="stat-lbl">Ажил олгогч</div></div>
+      <div class="stat"><div class="stat-num">94%</div><div class="stat-lbl">Ажилд орох хувь</div></div>
+    </div>
+  </div>
+  <div class="cats-section">
+    <div class="sec-header"><div class="sec-title">Ажлын ангилал</div><span class="see-all" onclick="showPage(&#39;jobs-page&#39;)">Бүгдийг харах →</span></div>
+    <div class="cats-grid">
+      <div class="cat-card" onclick="filterAndGo(&#39;Хүргэлт&#39;)"><div class="cat-icon">🛵</div><div class="cat-name">Хүргэлт</div><div class="cat-cnt">142 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo(&#39;Цэвэрлэгч&#39;)"><div class="cat-icon">🧹</div><div class="cat-name">Цэвэрлэгч</div><div class="cat-cnt">98 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo(&#39;Ачигч&#39;)"><div class="cat-icon">📦</div><div class="cat-name">Ачигч</div><div class="cat-cnt">76 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo(&#39;Промоутер&#39;)"><div class="cat-icon">📢</div><div class="cat-name">Промоутер</div><div class="cat-cnt">54 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo(&#39;Харуул&#39;)"><div class="cat-icon">🔒</div><div class="cat-name">Харуул</div><div class="cat-cnt">88 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo(&#39;Хоол&#39;)"><div class="cat-icon">🍽️</div><div class="cat-name">Хоол &amp; Ресторан</div><div class="cat-cnt">112 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo(&#39;Угаалга&#39;)"><div class="cat-icon">🚿</div><div class="cat-name">Угаалга</div><div class="cat-cnt">43 ажил</div></div>
+      <div class="cat-card" onclick="filterAndGo(&#39;Тараагч&#39;)"><div class="cat-icon">📰</div><div class="cat-name">Тараагч</div><div class="cat-cnt">35 ажил</div></div>
+    </div>
+  </div>
+  <div style="max-width:1100px;margin:0 auto;padding:0 20px 40px">
+    <div class="sec-header"><div class="sec-title">⚡ Яаралтай зарууд</div><span class="see-all" onclick="showPage(&#39;jobs-page&#39;)">Бүгдийг харах →</span></div>
+    <div class="jobs-list" id="home-jobs"><div class="job-card urgent" onclick="showDetail(1)">
+    <div class="job-icon">🛵</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Хүргэлтийн жолооч</div>
+        <span class="badge badge-urgent">Яаралтай</span>
+      </div>
+      <div class="job-company">Унаа Экспресс</div>
+      <div class="job-tags">
+        <span class="tag">📍 Сүхбаатар дүүрэг</span>
+        <span class="tag">⏰ 08:00–22:00</span>
+        <span class="tag">💰 Өдөрт ~144,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">18,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~144,000₮</div>
+      <div class="job-time">1 цагийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(1)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card urgent" onclick="showDetail(3)">
+    <div class="job-icon">📦</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Ачигч туслах</div>
+        <span class="badge badge-urgent">Яаралтай</span>
+      </div>
+      <div class="job-company">МонАчаа</div>
+      <div class="job-tags">
+        <span class="tag">📍 Баянзүрх дүүрэг</span>
+        <span class="tag">⏰ 07:00–19:00</span>
+        <span class="tag">💰 Өдөрт ~120,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">15,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~120,000₮</div>
+      <div class="job-time">30 минутын өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(3)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card urgent" onclick="showDetail(9)">
+    <div class="job-icon">👨‍🍳</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Тогооч туслах</div>
+        <span class="badge badge-urgent">Яаралтай</span>
+      </div>
+      <div class="job-company">Голомт Зоогийн газар</div>
+      <div class="job-tags">
+        <span class="tag">📍 Баянзүрх дүүрэг</span>
+        <span class="tag">⏰ 08:00–20:00</span>
+        <span class="tag">💰 Өдөрт ~96,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">12,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~96,000₮</div>
+      <div class="job-time">2 цагийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(9)">Дэлгэрэнгүй</button>
+    </div>
+  </div></div>
+  </div>
+</div>
+
+<!-- JOBS PAGE -->
+<div id="jobs-page" class="page">
+  <div class="main">
+    <div>
+      <div class="filter-card">
+        <div class="filter-title">🏷️ Ангилал</div>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Хүргэлт" class="cf"> Хүргэлт <span class="count-badge">142</span></label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Цэвэрлэгч" class="cf"> Цэвэрлэгч <span class="count-badge">98</span></label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Ачигч" class="cf"> Ачигч <span class="count-badge">76</span></label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Промоутер" class="cf"> Промоутер <span class="count-badge">54</span></label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Харуул" class="cf"> Харуул <span class="count-badge">88</span></label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Хоол" class="cf"> Хоол &amp; Ресторан <span class="count-badge">112</span></label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Угаалга" class="cf"> Угаалга <span class="count-badge">43</span></label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Тараагч" class="cf"> Тараагч <span class="count-badge">35</span></label>
+      </div>
+      <div class="filter-card">
+        <div class="filter-title">📍 Байршил</div>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Сүхбаатар" class="lf"> Сүхбаатар дүүрэг</label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Хан-Уул" class="lf"> Хан-Уул дүүрэг</label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Баянзүрх" class="lf"> Баянзүрх дүүрэг</label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Чингэлтэй" class="lf"> Чингэлтэй дүүрэг</label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Баянгол" class="lf"> Баянгол дүүрэг</label>
+        <label class="filter-label"><input type="checkbox" onchange="renderJobs()" value="Сонгинохайрхан" class="lf"> Сонгинохайрхан</label>
+      </div>
+      <div class="filter-card">
+        <div class="filter-title">💰 Цалин</div>
+        <label class="filter-label"><input type="radio" name="pay" onchange="renderJobs()" value="0" checked=""> Бүгд</label>
+        <label class="filter-label"><input type="radio" name="pay" onchange="renderJobs()" value="10000"> 10,000₮+/цаг</label>
+        <label class="filter-label"><input type="radio" name="pay" onchange="renderJobs()" value="15000"> 15,000₮+/цаг</label>
+        <label class="filter-label"><input type="radio" name="pay" onchange="renderJobs()" value="20000"> 20,000₮+/цаг</label>
+      </div>
+    </div>
+    <div>
+      <div class="jobs-header">
+        <div class="jobs-title" id="jobs-title">Бүх зарууд</div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <span class="jobs-count" id="jobs-cnt">10 ажил олдлоо</span>
+        </div>
+      </div>
+      <div class="jobs-list" id="all-jobs"><div class="job-card urgent" onclick="showDetail(1)">
+    <div class="job-icon">🛵</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Хүргэлтийн жолооч</div>
+        <span class="badge badge-urgent">Яаралтай</span>
+      </div>
+      <div class="job-company">Унаа Экспресс</div>
+      <div class="job-tags">
+        <span class="tag">📍 Сүхбаатар дүүрэг</span>
+        <span class="tag">⏰ 08:00–22:00</span>
+        <span class="tag">💰 Өдөрт ~144,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">18,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~144,000₮</div>
+      <div class="job-time">1 цагийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(1)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card" onclick="showDetail(2)">
+    <div class="job-icon">🧹</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Цэвэрлэгч</div>
+        <span class="badge badge-new">Шинэ</span>
+      </div>
+      <div class="job-company">Цэвэр Орчин ХХК</div>
+      <div class="job-tags">
+        <span class="tag">📍 Хан-Уул дүүрэг</span>
+        <span class="tag">⏰ 08:00–17:00</span>
+        <span class="tag">💰 Өдөрт ~96,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">12,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~96,000₮</div>
+      <div class="job-time">3 цагийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(2)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card urgent" onclick="showDetail(3)">
+    <div class="job-icon">📦</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Ачигч туслах</div>
+        <span class="badge badge-urgent">Яаралтай</span>
+      </div>
+      <div class="job-company">МонАчаа</div>
+      <div class="job-tags">
+        <span class="tag">📍 Баянзүрх дүүрэг</span>
+        <span class="tag">⏰ 07:00–19:00</span>
+        <span class="tag">💰 Өдөрт ~120,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">15,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~120,000₮</div>
+      <div class="job-time">30 минутын өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(3)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card" onclick="showDetail(4)">
+    <div class="job-icon">📢</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Промоутер</div>
+        <span class="badge badge-new">Шинэ</span>
+      </div>
+      <div class="job-company">Оюу Маркетинг</div>
+      <div class="job-tags">
+        <span class="tag">📍 Чингэлтэй дүүрэг</span>
+        <span class="tag">⏰ 10:00–20:00</span>
+        <span class="tag">💰 Өдөрт ~112,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">14,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~112,000₮</div>
+      <div class="job-time">2 цагийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(4)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card" onclick="showDetail(5)">
+    <div class="job-icon">🔒</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Харуул хамгаалагч</div>
+        <span class="badge badge-today">Өнөөдөр</span>
+      </div>
+      <div class="job-company">Хамгаал ХХК</div>
+      <div class="job-tags">
+        <span class="tag">📍 Баянгол дүүрэг</span>
+        <span class="tag">⏰ Ээлжийн (12 цаг)</span>
+        <span class="tag">💰 Өдөрт ~128,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">16,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~128,000₮</div>
+      <div class="job-time">5 цагийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(5)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card" onclick="showDetail(6)">
+    <div class="job-icon">🍽️</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Зөөгч туслах</div>
+        <span class="badge badge-new">Шинэ</span>
+      </div>
+      <div class="job-company">Лунд Ресторан</div>
+      <div class="job-tags">
+        <span class="tag">📍 Сүхбаатар дүүрэг</span>
+        <span class="tag">⏰ 11:00–22:00</span>
+        <span class="tag">💰 Өдөрт ~88,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">11,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~88,000₮</div>
+      <div class="job-time">4 цагийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(6)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card" onclick="showDetail(7)">
+    <div class="job-icon">🚿</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Машин угаагч</div>
+        <span class="badge badge-new">Шинэ</span>
+      </div>
+      <div class="job-company">Цэвэр Авто</div>
+      <div class="job-tags">
+        <span class="tag">📍 Хан-Уул дүүрэг</span>
+        <span class="tag">⏰ 09:00–18:00</span>
+        <span class="tag">💰 Өдөрт ~104,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">13,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~104,000₮</div>
+      <div class="job-time">6 цагийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(7)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card" onclick="showDetail(8)">
+    <div class="job-icon">📰</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Флаер тараагч</div>
+        <span class="badge badge-today">Өнөөдөр</span>
+      </div>
+      <div class="job-company">Зар Медиа</div>
+      <div class="job-tags">
+        <span class="tag">📍 Чингэлтэй дүүрэг</span>
+        <span class="tag">⏰ 09:00–17:00</span>
+        <span class="tag">💰 Өдөрт ~80,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">10,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~80,000₮</div>
+      <div class="job-time">1 өдрийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(8)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card urgent" onclick="showDetail(9)">
+    <div class="job-icon">👨‍🍳</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Тогооч туслах</div>
+        <span class="badge badge-urgent">Яаралтай</span>
+      </div>
+      <div class="job-company">Голомт Зоогийн газар</div>
+      <div class="job-tags">
+        <span class="tag">📍 Баянзүрх дүүрэг</span>
+        <span class="tag">⏰ 08:00–20:00</span>
+        <span class="tag">💰 Өдөрт ~96,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">12,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~96,000₮</div>
+      <div class="job-time">2 цагийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(9)">Дэлгэрэнгүй</button>
+    </div>
+  </div><div class="job-card" onclick="showDetail(10)">
+    <div class="job-icon">🏭</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">Агуулахын ажилтан</div>
+        <span class="badge badge-new">Шинэ</span>
+      </div>
+      <div class="job-company">МонЛогистик</div>
+      <div class="job-tags">
+        <span class="tag">📍 Сонгинохайрхан дүүрэг</span>
+        <span class="tag">⏰ 08:00–17:00</span>
+        <span class="tag">💰 Өдөрт ~136,000₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">17,000₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~136,000₮</div>
+      <div class="job-time">3 цагийн өмнө</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(10)">Дэлгэрэнгүй</button>
+    </div>
+  </div></div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL PAGE -->
+<div id="detail-page" class="page">
+  <div style="max-width:1100px;margin:0 auto;padding:24px 20px 0">
+    <button class="back-btn" onclick="goBack()">← Буцах</button>
+  </div>
+  <div class="detail-wrap" id="detail-content"></div>
+</div>
+
+<!-- POST PAGE -->
+<div id="post-page" class="page">
+  <div class="post-wrap">
+    <div class="post-title">Ажлын зар оруулах</div>
+    <div class="post-sub">Webee платформд үнэгүй зар нийтлэх</div>
+    <div class="form-card">
+      <div class="form-card-title">Ажлын үндсэн мэдээлэл</div>
+      <div class="form-group"><label>Ажлын нэр <span>*</span></label><input type="text" id="pn" placeholder="Жишээ: Хүргэлтийн туслах, Цэвэрлэгч..."></div>
+      <div class="form-row">
+        <div class="form-group" style="margin:0"><label>Ангилал <span>*</span></label>
+          <select id="pc"><option value="">Сонгох...</option><option>Хүргэлт</option><option>Цэвэрлэгч</option><option>Ачигч</option><option>Промоутер</option><option>Харуул</option><option>Хоол &amp; Ресторан</option><option>Угаалга</option><option>Тараагч</option><option>Бусад</option></select>
+        </div>
+        <div class="form-group" style="margin:0"><label>Байршил <span>*</span></label>
+          <select id="pl"><option>Сүхбаатар дүүрэг</option><option>Хан-Уул дүүрэг</option><option>Баянзүрх дүүрэг</option><option>Чингэлтэй дүүрэг</option><option>Баянгол дүүрэг</option><option>Сонгинохайрхан</option></select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="margin:0"><label>Цалин (₮/цаг) <span>*</span></label><input type="number" id="pp" placeholder="15000"></div>
+        <div class="form-group" style="margin:0"><label>Ажлын цаг</label><input type="text" id="ph" placeholder="09:00–18:00"></div>
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-card-title">Дэлгэрэнгүй</div>
+      <div class="form-group"><label>Ажлын тайлбар <span>*</span></label><textarea id="pd" placeholder="Ажилчнаас юу хийхийг хүлээж байгааг тайлбарлана уу..."></textarea></div>
+      <div class="form-group"><label>Шаардлага</label><textarea id="pr" placeholder="Жишээ: 18 насанд хүрсэн байх..." style="min-height:70px"></textarea></div>
+    </div>
+    <div class="form-card">
+      <div class="form-card-title">Холбоо барих</div>
+      <div class="form-row">
+        <div class="form-group" style="margin:0"><label>Компани / Нэр</label><input type="text" placeholder="Таны нэр эсвэл компани"></div>
+        <div class="form-group" style="margin:0"><label>Утас <span>*</span></label><input type="tel" placeholder="99001122"></div>
+      </div>
+    </div>
+    <button class="form-submit" onclick="submitPost()">✓ Зар нийтлэх — Үнэгүй</button>
+    <div class="success-msg" id="post-ok">🎉 Таны зар амжилттай нийтлэгдлээ!</div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login-page" class="page">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-title">Нэвтрэх</div>
+      <div class="auth-sub">Webee-д тавтай морил</div>
+      <div class="form-group"><label>Утасны дугаар</label><input type="tel" placeholder="99001122"></div>
+      <div class="form-group"><label>Нууц үг</label><input type="password" placeholder="••••••••"></div>
+      <button class="form-submit" onclick="showPage(&#39;home&#39;)" style="margin-top:4px">Нэвтрэх</button>
+      <p style="text-align:center;font-size:13px;color:var(--text-2);margin-top:16px">Бүртгэл байхгүй юу? <a onclick="showPage(&#39;reg-page&#39;)" style="color:var(--primary);font-weight:700;cursor:pointer">Бүртгүүлэх</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTER -->
+<div id="reg-page" class="page">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-title">Бүртгүүлэх</div>
+      <div class="auth-sub">Үнэгүй бүртгүүлж ажил хайж эхэлнэ үү</div>
+      <div class="auth-tabs">
+        <button class="auth-tab active" onclick="this.parentNode.querySelectorAll(&#39;.auth-tab&#39;).forEach(t=&gt;t.classList.remove(&#39;active&#39;));this.classList.add(&#39;active&#39;)">Ажил хайгч</button>
+        <button class="auth-tab" onclick="this.parentNode.querySelectorAll(&#39;.auth-tab&#39;).forEach(t=&gt;t.classList.remove(&#39;active&#39;));this.classList.add(&#39;active&#39;)">Ажил олгогч</button>
+      </div>
+      <div class="form-group"><label>Овог нэр</label><input type="text" placeholder="Таны бүтэн нэр"></div>
+      <div class="form-group"><label>Утасны дугаар</label><input type="tel" placeholder="99001122"></div>
+      <div class="form-group"><label>Нууц үг</label><input type="password" placeholder="8+ тэмдэгт"></div>
+      <button class="form-submit" onclick="showPage(&#39;home&#39;)">Бүртгүүлэх →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const JOBS=[
+  {id:1,name:'Хүргэлтийн жолооч',company:'Унаа Экспресс',cat:'Хүргэлт',loc:'Сүхбаатар',pay:18000,daily:144000,icon:'🛵',urgent:true,badge:'urgent',time:'1 цагийн өмнө',desc:'Хоол болон бараа хүргэлт хийх.',reqs:['Жолооны үнэмлэхтэй','18 насанд хүрсэн'],hours:'08:00–22:00',days:'7 хоног',phone:'9900-1122'},
+  {id:2,name:'Цэвэрлэгч',company:'Цэвэр Орчин ХХК',cat:'Цэвэрлэгч',loc:'Хан-Уул',pay:12000,daily:96000,icon:'🧹',urgent:false,badge:'new',time:'3 цагийн өмнө',desc:'Оффис болон орон сууцны цэвэрлэгээ хийх.',reqs:['Хичээнгүй байдал'],hours:'08:00–17:00',days:'Даваа–Баасан',phone:'9911-2233'},
+  {id:3,name:'Ачигч туслах',company:'МонАчаа',cat:'Ачигч',loc:'Баянзүрх',pay:15000,daily:120000,icon:'📦',urgent:true,badge:'urgent',time:'30 минутын өмнө',desc:'Агуулах болон авто машинд ачаа ачих, буулгах.',reqs:['Биеийн чийрэг'],hours:'07:00–19:00',days:'Даваа–Бямба',phone:'9922-3344'},
+  {id:4,name:'Промоутер',company:'Оюу Маркетинг',cat:'Промоутер',loc:'Чингэлтэй',pay:14000,daily:112000,icon:'📢',urgent:false,badge:'new',time:'2 цагийн өмнө',desc:'Худалдааны төвд бараа сурталчлах.',reqs:['Нийтэч зан','16 насанд хүрсэн'],hours:'10:00–20:00',days:'Бямба–Ням',phone:'9933-4455'},
+  {id:5,name:'Харуул хамгаалагч',company:'Хамгаал ХХК',cat:'Харуул',loc:'Баянгол',pay:16000,daily:128000,icon:'🔒',urgent:false,badge:'today',time:'5 цагийн өмнө',desc:'Объект хамгаалалт хийх.',reqs:['18 насанд хүрсэн','Хариуцлагатай'],hours:'Ээлжийн (12 цаг)',days:'7 хоног',phone:'9944-5566'},
+  {id:6,name:'Зөөгч туслах',company:'Лунд Ресторан',cat:'Хоол',loc:'Сүхбаатар',pay:11000,daily:88000,icon:'🍽️',urgent:false,badge:'new',time:'4 цагийн өмнө',desc:'Рестораны зочдод хоол зөөх.',reqs:['Найрсаг зан'],hours:'11:00–22:00',days:'Лха–Ням',phone:'9955-6677'},
+  {id:7,name:'Машин угаагч',company:'Цэвэр Авто',cat:'Угаалга',loc:'Хан-Уул',pay:13000,daily:104000,icon:'🚿',urgent:false,badge:'new',time:'6 цагийн өмнө',desc:'Автомашин угаах, дотор цэвэрлэх.',reqs:['Үнэнч шударга'],hours:'09:00–18:00',days:'Даваа–Бямба',phone:'9966-7788'},
+  {id:8,name:'Флаер тараагч',company:'Зар Медиа',cat:'Тараагч',loc:'Чингэлтэй',pay:10000,daily:80000,icon:'📰',urgent:false,badge:'today',time:'1 өдрийн өмнө',desc:'Гудамж болон худалдааны төвд флаер тараах.',reqs:['16 насанд хүрсэн'],hours:'09:00–17:00',days:'Даваа–Баасан',phone:'9977-8899'},
+  {id:9,name:'Тогооч туслах',company:'Голомт Зоогийн газар',cat:'Хоол',loc:'Баянзүрх',pay:12000,daily:96000,icon:'👨‍🍳',urgent:true,badge:'urgent',time:'2 цагийн өмнө',desc:'Тогоочид туслах, хоол бэлдэх.',reqs:['Цэвэр байдалд анхаардаг'],hours:'08:00–20:00',days:'7 хоног',phone:'9988-9900'},
+  {id:10,name:'Агуулахын ажилтан',company:'МонЛогистик',cat:'Ачигч',loc:'Сонгинохайрхан',pay:17000,daily:136000,icon:'🏭',urgent:false,badge:'new',time:'3 цагийн өмнө',desc:'Агуулахад бараа хүлээн авах, эмхлэх.',reqs:['Биеийн чийрэг'],hours:'08:00–17:00',days:'Даваа–Баасан',phone:'9900-0011'},
+];
+
+const BANK={name:'Ганпүрэв Г',account:'МН04 0005 00 5003871616',bank:'Хаан банк'};
+let prevPage='home';
+let currentCatFilter='';
+let currentJob=null;
+
+function jobCard(j){
+  return `<div class="job-card${j.urgent?' urgent':''}" onclick="showDetail(${j.id})">
+    <div class="job-icon">${j.icon}</div>
+    <div class="job-body">
+      <div class="job-top">
+        <div class="job-name">${j.name}</div>
+        ${j.badge==='urgent'?'<span class="badge badge-urgent">Яаралтай</span>':j.badge==='new'?'<span class="badge badge-new">Шинэ</span>':'<span class="badge badge-today">Өнөөдөр</span>'}
+      </div>
+      <div class="job-company">${j.company}</div>
+      <div class="job-tags">
+        <span class="tag">📍 ${j.loc} дүүрэг</span>
+        <span class="tag">⏰ ${j.hours}</span>
+        <span class="tag">💰 Өдөрт ~${j.daily.toLocaleString()}₮</span>
+      </div>
+    </div>
+    <div class="job-right">
+      <div class="job-pay">${j.pay.toLocaleString()}₮<span class="job-pay-unit">/цаг</span></div>
+      <div class="job-daily">Өдөрт ~${j.daily.toLocaleString()}₮</div>
+      <div class="job-time">${j.time}</div>
+      <button class="apply-btn" onclick="event.stopPropagation();showDetail(${j.id})">Дэлгэрэнгүй</button>
+    </div>
+  </div>`;
+}
+
+function showDetail(id){
+  const j=JOBS.find(x=>x.id===id);
+  if(!j)return;
+  currentJob=j;
+  document.getElementById('detail-content').innerHTML=`
+    <div class="detail-card">
+      <div class="detail-head">
+        <div class="detail-icon">${j.icon}</div>
+        <div><div class="detail-title">${j.name}</div><div class="detail-company">${j.company}</div></div>
+      </div>
+      <div class="detail-meta">
+        <div class="meta-item">📍 ${j.loc} дүүрэг</div>
+        <div class="meta-item">⏰ ${j.hours}</div>
+        <div class="meta-item">📅 ${j.days}</div>
+        <div class="meta-item">🏷️ ${j.cat}</div>
+      </div>
+      <div class="detail-sec-title">Ажлын тайлбар</div>
+      <div class="detail-desc">${j.desc}</div>
+      <div class="detail-sec-title">Шаардлага</div>
+      <div class="detail-desc"><ul>${j.reqs.map(r=>`<li>${r}</li>`).join('')}</ul></div>
+    </div>
+    <div>
+      <div class="sidebar-card">
+        <div style="font-size:12px;color:var(--text-3);margin-bottom:4px">Цагийн цалин</div>
+        <div class="big-pay">${j.pay.toLocaleString()}₮<span style="font-size:14px;color:var(--text-3);font-weight:400">/цаг</span></div>
+        <div class="big-daily">Өдөрт ~${j.daily.toLocaleString()}₮</div>
+        <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:var(--r);padding:12px;margin-top:16px;font-size:13px;color:#dc2626;font-weight:600;text-align:center">
+          🔒 Холбоо харахын тулд 10,000₮ төлнө үү
+        </div>
+        <button style="width:100%;background:var(--primary);color:#fff;border:none;font-family:inherit;font-size:15px;font-weight:700;padding:13px;border-radius:var(--r);margin-top:12px;cursor:pointer" onclick="openPayModal(${j.id})">
+          💳 10,000₮ төлж холбоо харах
+        </button>
+        <button style="width:100%;background:none;border:1.5px solid var(--border);font-family:inherit;font-size:14px;font-weight:600;padding:11px;border-radius:var(--r);margin-top:8px;color:var(--text);cursor:pointer">♡ Хадгалах</button>
+      </div>
+      <div class="sidebar-card">
+        <div style="font-size:13px;color:var(--text-3);margin-bottom:8px">⚠️ Төлбөр өнөөдөр л хүчинтэй</div>
+        <div style="font-size:12px;color:var(--text-2);line-height:1.7">10,000₮ төлсний дараа ажил олгогчийн утасны дугаар харагдана. Энэ эрх зөвхөн өнөөдөр хүчинтэй.</div>
+      </div>
+    </div>`;
+  prevPage=document.querySelector('.page.active')?.id||'home';
+  showPage('detail-page');
+}
+
+function openPayModal(jobId){
+  const j=JOBS.find(x=>x.id===jobId);
+  if(!j)return;
+  currentJob=j;
+  document.getElementById('modal-body').innerHTML=`
+    <div class="modal-title">💳 Холбоо харах — 10,000₮</div>
+    <div class="modal-sub">"${j.name}" ажлын ажил олгогчийн утасны дугаарыг харахын тулд 10,000₮ төлнө үү</div>
+    <div class="pay-amount">
+      <div class="pay-amount-num">10,000₮</div>
+      <div class="pay-amount-lbl">Өнөөдөр л хүчинтэй • Нэг удаагийн төлбөр</div>
+    </div>
+    <div class="modal-steps">
+      <div class="modal-step"><div class="step-num">1</div><div>Доорх дансруу <strong>10,000₮</strong> шилжүүлнэ үү</div></div>
+      <div class="modal-step"><div class="step-num">2</div><div>Гүйлгээний дугаар эсвэл утасны дугаараа доор оруулна уу</div></div>
+      <div class="modal-step"><div class="step-num">3</div><div>Ажил олгогчийн утас шууд харагдана</div></div>
+    </div>
+    <div class="bank-info">
+      <div class="bank-row">
+        <span class="bank-row-label">🏦 Банк</span>
+        <span class="bank-row-value">${BANK.bank}</span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-row-label">👤 Хүлээн авагч</span>
+        <span class="bank-row-value">${BANK.name}</span>
+      </div>
+      <div class="bank-row">
+        <span class="bank-row-label">💳 Дансны дугаар</span>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="bank-row-value" id="acc-num">${BANK.account}</span>
+          <button class="copy-btn" onclick="copyAcc()">Хуулах</button>
+        </div>
+      </div>
+      <div class="bank-row">
+        <span class="bank-row-label">💰 Дүн</span>
+        <span class="bank-row-value" style="color:var(--primary)">10,000₮</span>
+      </div>
+    </div>
+    <div class="ref-input-wrap">
+      <label>Таны утасны дугаар <span style="color:var(--red)">*</span></label>
+      <input class="ref-input" type="tel" id="user-phone" placeholder="Жишээ: 99001122" maxlength="8">
+    </div>
+    <button class="confirm-btn" onclick="confirmPay()">✓ Төлбөр баталгаажуулах</button>`;
+  document.getElementById('pay-modal').classList.remove('hidden');
+}
+
+function copyAcc(){
+  navigator.clipboard.writeText(BANK.account.replace(/\s/g,'')).then(()=>{
+    const btn=document.querySelector('.copy-btn');
+    btn.textContent='Хуулагдлаа!';
+    btn.style.background='var(--green)';
+    btn.style.color='#fff';
+    setTimeout(()=>{btn.textContent='Хуулах';btn.style.background='';btn.style.color='';},2000);
+  });
+}
+
+function confirmPay(){
+  const phone=document.getElementById('user-phone').value.trim();
+  if(phone.length<8){
+    alert('Утасны дугаараа оруулна уу!');
+    return;
+  }
+  if(!currentJob)return;
+  document.getElementById('modal-body').innerHTML=`
+    <div class="success-screen">
+      <div class="success-icon">✅</div>
+      <div class="success-title">Амжилттай!</div>
+      <div class="success-sub">Таны төлбөр баталгаажлаа. Ажил олгогчийн утасны дугаар:</div>
+      <div class="contact-reveal">
+        <div class="contact-label">📞 Ажил олгогчийн утас</div>
+        <div class="contact-value">${currentJob.phone}</div>
+        <div class="contact-note">⚠️ Энэ мэдээлэл өнөөдөр л хүчинтэй</div>
+      </div>
+      <div style="background:var(--primary-light);border:1px solid var(--primary-mid);border-radius:var(--r);padding:12px;font-size:13px;color:var(--primary-dark);margin-bottom:16px">
+        💡 Та өнөөдөр дуустал энэ дугаарт холбогдож ажлын талаар тохирч болно
+      </div>
+      <button class="close-success" onclick="closeModal()">Хаах</button>
+    </div>`;
+}
+
+function closeModal(){
+  document.getElementById('pay-modal').classList.add('hidden');
+}
+
+function renderHome(){
+  document.getElementById('home-jobs').innerHTML=JOBS.filter(j=>j.urgent).slice(0,4).map(j=>jobCard(j)).join('');
+}
+
+function renderJobs(){
+  const cats=[...document.querySelectorAll('.cf:checked')].map(c=>c.value);
+  const locs=[...document.querySelectorAll('.lf:checked')].map(c=>c.value);
+  const pay=parseInt(document.querySelector('input[name=pay]:checked')?.value||0);
+  let list=JOBS.filter(j=>
+    (cats.length===0||cats.some(c=>j.cat.includes(c)))&&
+    (locs.length===0||locs.some(l=>j.loc.includes(l)))&&
+    j.pay>=pay
+  );
+  if(currentCatFilter){list=JOBS.filter(j=>j.cat.includes(currentCatFilter));document.getElementById('jobs-title').textContent=currentCatFilter+' зарууд';}
+  else{document.getElementById('jobs-title').textContent='Бүх зарууд';}
+  document.getElementById('jobs-cnt').textContent=list.length+' ажил олдлоо';
+  document.getElementById('all-jobs').innerHTML=list.map(j=>jobCard(j)).join('');
+}
+
+function filterAndGo(cat){currentCatFilter=cat;showPage('jobs-page');renderJobs();}
+
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(name).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const map={home:'nav-home','jobs-page':'nav-jobs','post-page':'nav-post'};
+  if(map[name])document.getElementById(map[name]).classList.add('active');
+  if(name==='jobs-page')renderJobs();
+  window.scrollTo(0,0);
+}
+
+function goBack(){showPage(prevPage);}
+function submitPost(){
+  if(!document.getElementById('pn').value){alert('Ажлын нэрийг оруулна уу');return;}
+  document.getElementById('post-ok').style.display='block';
+  setTimeout(()=>document.getElementById('post-ok').style.display='none',5000);
+}
+
+document.getElementById('pay-modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+renderHome();
+renderJobs();
+</script>
+</body></html>
