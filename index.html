@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)file:///C:/Users/NewTech/Downloads/index_11.html -->
+<html lang="mn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Webee — Цагын ажлын платформ</title>
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+:root{
+  --p:#2563eb;--pd:#1d4ed8;--pl:#eff6ff;--pm:#bfdbfe;
+  --g:#16a34a;--gl:#f0fdf4;
+  --r:#dc2626;--rl:#fef2f2;
+  --bg:#f8fafc;--w:#fff;
+  --t:#0f172a;--t2:#64748b;--t3:#94a3b8;
+  --b:#e2e8f0;
+  --shm:0 4px 16px rgba(0,0,0,.08);
+  --rad:8px;--radl:12px;--radfull:9999px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t);font-size:14px;line-height:1.6}
+button{cursor:pointer;font-family:inherit}
+.page{display:none}.page.active{display:block}
+
+.nav{background:var(--w);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:200}
+.nav-inner{max-width:1080px;margin:0 auto;padding:0 24px;height:56px;display:flex;align-items:center;gap:8px}
+.logo{font-size:18px;font-weight:800;color:var(--p);cursor:pointer;flex-shrink:0;letter-spacing:-0.5px;margin-right:16px}
+.nav-links{display:flex;gap:2px;flex:1}
+.nl{color:var(--t2);font-size:13px;font-weight:500;padding:5px 10px;border-radius:var(--rad);cursor:pointer;transition:all .15s;border:none;background:none;font-family:inherit}
+.nl:hover,.nl.active{color:var(--p);background:var(--pl)}
+.nav-right{display:flex;gap:8px;margin-left:auto;align-items:center}
+.btn-ghost{background:none;border:1.5px solid var(--b);color:var(--t);font-size:13px;font-weight:600;padding:6px 14px;border-radius:var(--radfull);font-family:inherit}
+.btn-ghost:hover{border-color:var(--p);color:var(--p)}
+.btn-prim{background:var(--p);border:none;color:#fff;font-size:13px;font-weight:600;padding:7px 16px;border-radius:var(--radfull);font-family:inherit}
+.btn-prim:hover{background:var(--pd)}
+.user-info{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500}
+.user-av{width:30px;height:30px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700}
+
+.hero{background:var(--p);padding:56px 24px 48px;text-align:center}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);color:#fff;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:4px 12px;border-radius:var(--radfull);margin-bottom:18px}
+.hero h1{font-size:clamp(22px,4vw,40px);font-weight:800;color:#fff;line-height:1.2;margin-bottom:10px;letter-spacing:-0.5px}
+.hero h1 em{font-style:normal;color:#93c5fd}
+.hero-sub{color:#bfdbfe;font-size:14px;margin-bottom:28px}
+.search-bar{background:var(--w);border-radius:var(--rad);display:flex;align-items:center;padding:4px 4px 4px 14px;gap:8px;box-shadow:0 8px 32px rgba(0,0,0,.15);max-width:540px;margin:0 auto 20px}
+.search-bar input{flex:1;border:none;outline:none;font-family:inherit;font-size:14px;color:var(--t);background:transparent}
+.search-bar input::placeholder{color:var(--t3)}
+.sdiv{width:1px;height:22px;background:var(--b);flex-shrink:0}
+.sloc{border:none;outline:none;font-family:inherit;font-size:13px;color:var(--t2);background:transparent;width:120px}
+.sbtn{background:var(--p);color:#fff;border:none;border-radius:6px;padding:9px 16px;font-family:inherit;font-size:13px;font-weight:600}
+.sbtn:hover{background:var(--pd)}
+.hero-chips{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.hchip{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#e0f2fe;font-size:12px;font-weight:500;padding:4px 12px;border-radius:var(--radfull);cursor:pointer;transition:all .15s}
+.hchip:hover{background:#fff;color:var(--p)}
+
+.stats-row{background:var(--w);border-bottom:1px solid var(--b)}
+.stats-in{max-width:1080px;margin:0 auto;padding:12px 24px;display:flex;justify-content:center;gap:40px}
+.stat{text-align:center}
+.stat-n{font-size:18px;font-weight:700;color:var(--p)}
+.stat-l{font-size:11px;color:var(--t3);margin-top:1px}
+
+.wrap{max-width:1080px;margin:0 auto;padding:24px}
+.two-col{display:grid;grid-template-columns:220px 1fr;gap:20px}
+
+.filter-box{background:var(--w);border:1px solid var(--b);border-radius:var(--radl);padding:16px;margin-bottom:12px}
+.fb-title{font-size:12px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px}
+.fcheck{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--t2);padding:4px 0;cursor:pointer}
+.fcheck input{accent-color:var(--p);width:14px;height:14px;flex-shrink:0}
+.fcheck:hover{color:var(--p)}
+.fcnt{margin-left:auto;font-size:11px;color:var(--t3)}
+
+.jobs-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.jobs-title{font-size:15px;font-weight:700}
+.jobs-cnt{font-size:12px;color:var(--t3)}
+.sort-sel{border:1px solid var(--b);background:var(--w);font-family:inherit;font-size:12px;padding:5px 8px;border-radius:var(--rad);outline:none;color:var(--t2)}
+.jlist{display:flex;flex-direction:column;gap:8px}
+
+.jcard{background:var(--w);border:1px solid var(--b);border-radius:var(--radl);padding:16px;display:flex;gap:14px;cursor:pointer;transition:all .15s}
+.jcard:hover{border-color:var(--pm);box-shadow:var(--shm)}
+.jico{width:44px;height:44px;border-radius:var(--rad);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;background:var(--pl)}
+.jbody{flex:1;min-width:0}
+.jtop{display:flex;align-items:center;gap:6px;margin-bottom:2px;flex-wrap:wrap}
+.jname{font-size:14px;font-weight:600;color:var(--t)}
+.badge{font-size:10px;font-weight:600;padding:2px 7px;border-radius:var(--radfull);text-transform:uppercase}
+.bn{background:var(--gl);color:var(--g)}
+.jco{font-size:12px;color:var(--t3);margin-bottom:8px}
+.jtags{display:flex;gap:5px;flex-wrap:wrap}
+.jtag{font-size:11px;padding:2px 8px;border-radius:var(--radfull);background:var(--bg);color:var(--t2);border:1px solid var(--b)}
+.jright{text-align:right;flex-shrink:0;display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:130px}
+.jpay{font-size:16px;font-weight:700;color:var(--p)}
+.jpu{font-size:11px;color:var(--t3);font-weight:400}
+.jday{font-size:11px;font-weight:500;color:var(--g)}
+.jtime{font-size:11px;color:var(--t3)}
+.jbtn{background:var(--p);color:#fff;border:none;font-size:12px;font-weight:600;padding:6px 12px;border-radius:var(--radfull);margin-top:2px;font-family:inherit}
+.jbtn:hover{background:var(--pd)}
+
+.loading{text-align:center;padding:32px;color:var(--t3);font-size:13px}
+.empty{text-align:center;padding:40px;color:var(--t3)}
+.empty-ico{font-size:40px;margin-bottom:10px}
+.empty-t{font-size:14px;font-weight:600;color:var(--t2);margin-bottom:4px}
+
+.sec-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.sec-t{font-size:15px;font-weight:700}
+.see-all{font-size:12px;color:var(--p);font-weight:500;cursor:pointer;background:none;border:none;font-family:inherit}
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
+.ccard{background:var(--w);border:1px solid var(--b);border-radius:var(--radl);padding:14px 10px;text-align:center;cursor:pointer;transition:all .15s}
+.ccard:hover{border-color:var(--pm);background:var(--pl);transform:translateY(-1px)}
+.cico{font-size:24px;margin-bottom:6px}
+.cname{font-size:12px;font-weight:600;color:var(--t)}
+
+.det-wrap{max-width:1080px;margin:0 auto;padding:20px 24px 48px;display:grid;grid-template-columns:1fr 280px;gap:20px}
+.back-btn{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:500;color:var(--t2);background:none;border:none;padding:0;margin-bottom:14px;font-family:inherit;cursor:pointer}
+.back-btn:hover{color:var(--p)}
+.dcard{background:var(--w);border:1px solid var(--b);border-radius:var(--radl);padding:22px}
+.dhd{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.dico{width:56px;height:56px;border-radius:var(--rad);display:flex;align-items:center;justify-content:center;font-size:26px;background:var(--pl);flex-shrink:0}
+.dt{font-size:18px;font-weight:700;margin-bottom:2px;letter-spacing:-0.3px}
+.dco{font-size:13px;color:var(--t2)}
+.dmeta{display:flex;flex-wrap:wrap;gap:8px;padding:14px 0;border-top:1px solid var(--b);border-bottom:1px solid var(--b);margin-bottom:14px}
+.dmi{font-size:12px;color:var(--t2)}
+.dst{font-size:13px;font-weight:600;margin:14px 0 6px}
+.dd{font-size:13px;color:var(--t2);line-height:1.8}
+.dd ul{padding-left:16px;margin-top:4px}
+.dd li{margin-bottom:4px}
+.scard{background:var(--w);border:1px solid var(--b);border-radius:var(--radl);padding:16px;margin-bottom:12px}
+.bigpay{font-size:26px;font-weight:700;color:var(--p);letter-spacing:-0.5px}
+.bigday{font-size:12px;color:var(--g);font-weight:500;margin-top:2px}
+.det-btn{width:100%;background:var(--p);color:#fff;border:none;font-family:inherit;font-size:14px;font-weight:600;padding:11px;border-radius:var(--rad);margin-top:12px}
+.det-btn:hover{background:var(--pd)}
+.warn-box{background:var(--rl);border-radius:var(--rad);padding:12px;font-size:12px;color:var(--r);line-height:1.6;margin-bottom:12px}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(15,23,42,.6);z-index:1000;display:none;align-items:center;justify-content:center;padding:16px}
+.modal-bg.open{display:flex}
+.modal{background:var(--w);border-radius:var(--radl);width:100%;max-width:380px;overflow:hidden;animation:up .2s ease}
+@keyframes up{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+.mhd{background:var(--p);padding:20px;text-align:center}
+.mhd h2{color:#fff;font-size:16px;font-weight:700;margin-bottom:2px}
+.mhd p{color:#bfdbfe;font-size:12px}
+.mbody{padding:18px}
+.amt{background:var(--pl);border-radius:var(--rad);padding:12px;text-align:center;margin-bottom:14px}
+.amt-n{font-size:24px;font-weight:700;color:var(--p)}
+.amt-l{font-size:11px;color:var(--t2);margin-top:2px}
+.binfo{background:var(--bg);border:1px solid var(--b);border-radius:var(--rad);padding:12px;margin-bottom:12px}
+.brow{display:flex;justify-content:space-between;font-size:12px;padding:3px 0}
+.brow span:first-child{color:var(--t3)}
+.brow span:last-child{font-weight:600;color:var(--t)}
+.bacc{color:var(--p)!important;font-size:15px!important;letter-spacing:1px}
+.msteps{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.mstep{display:flex;gap:8px;align-items:flex-start}
+.msn{width:20px;height:20px;border-radius:50%;background:var(--p);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.mst{font-size:12px;color:var(--t2);line-height:1.5}
+.mst strong{display:block;color:var(--t);font-size:12px;font-weight:600}
+.txn-lbl{font-size:12px;font-weight:600;margin-bottom:5px;display:block}
+.txn-in{width:100%;padding:8px 11px;border:1.5px solid var(--b);border-radius:var(--rad);font-family:inherit;font-size:13px;outline:none}
+.txn-in:focus{border-color:var(--p)}
+.txn-hint{font-size:11px;color:var(--t3);margin-top:3px}
+.mbtns{display:flex;gap:8px;margin-top:14px}
+.mcancel{flex:1;background:none;border:1.5px solid var(--b);font-family:inherit;font-size:13px;font-weight:500;padding:9px;border-radius:var(--rad);color:var(--t)}
+.mok{flex:2;background:var(--p);border:none;color:#fff;font-family:inherit;font-size:13px;font-weight:600;padding:9px;border-radius:var(--rad)}
+.mok:hover{background:var(--pd)}
+.revealed{background:var(--gl);border-radius:var(--rad);padding:16px;text-align:center;display:none}
+.revealed.show{display:block}
+.rev-phone{font-size:24px;font-weight:700;color:var(--g);margin:8px 0;letter-spacing:1px}
+.close-btn{margin-top:12px;background:var(--g);color:#fff;border:none;font-family:inherit;font-size:13px;font-weight:600;padding:8px 20px;border-radius:var(--radfull)}
+
+/* FORMS */
+.auth-wrap{min-height:calc(100vh - 56px);display:flex;align-items:center;justify-content:center;padding:28px 20px}
+.auth-card{background:var(--w);border:1px solid var(--b);border-radius:var(--radl);padding:28px;width:100%;max-width:420px}
+.auth-t{font-size:18px;font-weight:700;margin-bottom:3px}
+.auth-s{font-size:13px;color:var(--t2);margin-bottom:20px}
+.atabs{display:grid;grid-template-columns:1fr 1fr;border:1.5px solid var(--b);border-radius:var(--rad);overflow:hidden;margin-bottom:18px}
+.atab{padding:8px;text-align:center;font-size:13px;font-weight:600;background:var(--bg);color:var(--t2);border:none;font-family:inherit}
+.atab.active{background:var(--p);color:#fff}
+.fg{margin-bottom:12px}
+.fg:last-child{margin-bottom:0}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+label{display:block;font-size:12px;font-weight:600;margin-bottom:4px;color:var(--t)}
+.req{color:var(--r)}
+input,select,textarea{width:100%;padding:8px 11px;border:1.5px solid var(--b);border-radius:var(--rad);font-family:inherit;font-size:13px;color:var(--t);background:var(--w);outline:none;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{border-color:var(--p)}
+textarea{min-height:80px;resize:vertical}
+.fsub{width:100%;background:var(--p);color:#fff;border:none;font-family:inherit;font-size:14px;font-weight:600;padding:12px;border-radius:var(--rad)}
+.fsub:hover{background:var(--pd)}
+.fsub:disabled{background:var(--t3);cursor:not-allowed}
+.succ{background:var(--gl);border:1px solid #bbf7d0;color:var(--g);border-radius:var(--rad);padding:11px;font-size:13px;font-weight:500;text-align:center;display:none;margin-top:10px}
+.err-msg{background:var(--rl);border:1px solid #fecaca;color:var(--r);border-radius:var(--rad);padding:8px 11px;font-size:12px;margin-top:8px;display:none}
+.divider{text-align:center;font-size:12px;color:var(--t3);margin:14px 0;position:relative}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:calc(50% - 20px);height:1px;background:var(--b)}
+.divider::before{left:0}.divider::after{right:0}
+
+/* POST FORM */
+.post-wrap{max-width:600px;margin:0 auto;padding:28px 24px}
+.page-title{font-size:20px;font-weight:700;margin-bottom:4px;letter-spacing:-0.3px}
+.page-sub{font-size:13px;color:var(--t2);margin-bottom:20px}
+.fcard{background:var(--w);border:1px solid var(--b);border-radius:var(--radl);padding:20px;margin-bottom:12px}
+.fct{font-size:13px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--b)}
+.locked-box{background:var(--pl);border:1px solid var(--pm);border-radius:var(--radl);padding:24px;text-align:center}
+.locked-ico{font-size:36px;margin-bottom:10px}
+.locked-t{font-size:15px;font-weight:700;margin-bottom:6px}
+.locked-s{font-size:13px;color:var(--t2);margin-bottom:16px}
+
+/* SKILLS */
+.skills-grid{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sk-chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:5px 10px;border-radius:var(--radfull);border:1.5px solid var(--b);background:var(--bg);color:var(--t2);cursor:pointer;transition:all .15s;user-select:none}
+.sk-chip:hover{border-color:var(--pm);color:var(--p)}
+.sk-chip.sel{background:var(--p);border-color:var(--p);color:#fff}
+.sk-cnt{font-size:11px;color:var(--t3);margin-top:5px}
+
+/* PROFILE */
+.prof-wrap{max-width:840px;margin:0 auto;padding:24px}
+.prof-hd{background:var(--p);border-radius:var(--radl);padding:22px;display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.prof-av{width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#fff;flex-shrink:0}
+.prof-name{font-size:17px;font-weight:700;color:#fff}
+.prof-role{font-size:12px;color:#bfdbfe;margin-top:1px}
+.prof-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pc{background:var(--w);border:1px solid var(--b);border-radius:var(--radl);padding:16px}
+.pct{font-size:12px;font-weight:700;color:var(--t3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:12px}
+.pr{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--b);font-size:13px}
+.pr:last-child{border:none}
+.pr span:first-child{color:var(--t2)}
+
+/* REFERRAL */
+.ref-wrap{max-width:720px;margin:0 auto;padding:28px 24px}
+.ref-hero{background:var(--p);border-radius:var(--radl);padding:28px;text-align:center;margin-bottom:20px}
+.ref-hero h2{font-size:20px;font-weight:700;color:#fff;margin-bottom:6px}
+.ref-hero p{color:#bfdbfe;font-size:13px}
+.ref-code-box{background:rgba(255,255,255,.12);border:1.5px dashed rgba(255,255,255,.3);border-radius:var(--rad);padding:16px;text-align:center;margin:16px 0}
+.ref-code{font-size:26px;font-weight:700;color:#fff;letter-spacing:3px}
+.ref-lbl{font-size:11px;color:#bfdbfe;margin-top:3px}
+.copy-btn{background:#fff;color:var(--p);border:none;font-family:inherit;font-size:12px;font-weight:600;padding:7px 16px;border-radius:var(--radfull);margin-top:10px}
+.ref-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
+.rstat{background:var(--w);border:1px solid var(--b);border-radius:var(--radl);padding:16px;text-align:center}
+.rstat-ico{font-size:24px;margin-bottom:6px}
+.rstat-n{font-size:20px;font-weight:700;color:var(--p)}
+.rstat-l{font-size:11px;color:var(--t2);margin-top:2px}
+.how-card{background:var(--w);border:1px solid var(--b);border-radius:var(--radl);padding:20px}
+.how-t{font-size:14px;font-weight:700;margin-bottom:14px}
+.how-step{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start}
+.how-step:last-child{margin-bottom:0}
+.hsn{width:28px;height:28px;border-radius:50%;background:var(--pl);color:var(--p);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.hst{font-size:13px;color:var(--t2);line-height:1.6}
+.hst strong{display:block;color:var(--t);font-weight:600;font-size:13px;margin-bottom:1px}
+.bonus-box{background:var(--pl);border-radius:var(--rad);padding:14px;margin-top:14px;text-align:center}
+.bonus-n{font-size:14px;font-weight:600;color:var(--p)}
+.bonus-l{font-size:12px;color:var(--t2);margin-top:3px}
+.ref-banner{background:var(--pl);border:1px solid var(--pm);border-radius:var(--radl);padding:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.rb-text h3{font-size:15px;font-weight:700;margin-bottom:3px}
+.rb-text p{font-size:13px;color:var(--t2)}
+</style>
+
+<!-- NAV -->
+</head><body><nav class="nav">
+  <div class="nav-inner">
+    <span class="logo" onclick="sp(&#39;home&#39;)">Webee</span>
+    <div class="nav-links">
+      <button class="nl active" id="nh" onclick="sp(&#39;home&#39;)">Нүүр</button>
+      <button class="nl" id="nj" onclick="sp(&#39;jobs-page&#39;)">Ажлын зарууд</button>
+      <button class="nl" id="np" onclick="sp(&#39;post-page&#39;)" style="display: inline-flex;">Зар оруулах</button>
+      <button class="nl" id="nr" onclick="sp(&#39;ref-page&#39;)" style="display: inline-flex;">🎁 Урилга</button>
+    </div>
+    <div class="nav-right" id="navRight"><button class="btn-ghost" onclick="sp(&#39;login-page&#39;)">Нэвтрэх</button>
+      <button class="btn-prim" onclick="sp(&#39;reg-page&#39;)">Бүртгүүлэх</button></div>
+  </div>
+</nav>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-bg" id="payModal">
+  <div class="modal">
+    <div class="mhd">
+      <h2>Холбоо мэдээлэл харах</h2>
+      <p>10,000₮ төлсний дараа утасны дугаар харагдана</p>
+    </div>
+    <div class="mbody">
+      <div id="pay-sec">
+        <div class="amt">
+          <div class="amt-n">10,000₮</div>
+          <div class="amt-l">Өнөөдрийн 23:59 хүртэл хүчинтэй</div>
+        </div>
+        <div class="binfo">
+          <div class="brow"><span>Банк</span><span>Хаан банк</span></div>
+          <div class="brow"><span>Хүлээн авагч</span><span>Ганпүрэв Г</span></div>
+          <div class="brow"><span>Дансны дугаар</span><span class="bacc">5003871616</span></div>
+          <div class="brow"><span>Дүн</span><span style="color:var(--p)">10,000₮</span></div>
+        </div>
+        <div class="msteps">
+          <div class="mstep"><div class="msn">1</div><div class="mst"><strong>Хаан банк апп нээнэ</strong>5003871616 дансруу 10,000₮ шилжүүлнэ</div></div>
+          <div class="mstep"><div class="msn">2</div><div class="mst"><strong>Гүйлгээний дугаар хуулна</strong>Баримтан дахь дугаарыг доор бичнэ</div></div>
+          <div class="mstep"><div class="msn">3</div><div class="mst"><strong>Баталгаажуулна</strong>Утасны дугаар шууд харагдана</div></div>
+        </div>
+        <label class="txn-lbl">Гүйлгээний дугаар <span class="req">*</span></label>
+        <input type="text" class="txn-in" id="txnIn" placeholder="Жишээ: TXN240429001234">
+        <div class="txn-hint">Гүйлгээний баримт дээрх дугаарыг оруулна уу</div>
+        <div class="mbtns">
+          <button class="mcancel" onclick="closeModal()">Цуцлах</button>
+          <button class="mok" onclick="confirmPay()">Баталгаажуулах</button>
+        </div>
+      </div>
+      <div class="revealed" id="revealed">
+        <div style="font-size:32px;margin-bottom:6px">✓</div>
+        <div style="font-size:13px;font-weight:600;color:var(--g)">Амжилттай!</div>
+        <div class="rev-phone" id="revPhone"></div>
+        <div style="font-size:11px;color:var(--t2)">Өнөөдрийн 23:59 хүртэл хүчинтэй</div>
+        <button class="close-btn" onclick="closeModal()">Хаах</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div class="hero-badge">🇲🇳 Мэргэжил шаардахгүй ажлын платформ</div>
+    <h1>Өнөөдөр ажил олоод<br><em>өнөөдөр цалин ав</em></h1>
+    <p class="hero-sub">Диплом, туршлага шаардахгүй — хүсэл эрмэлзэлтэй байхад хангалттай</p>
+    <div class="search-bar">
+      <input type="text" id="hs" placeholder="Ажлын нэр хайх...">
+      <div class="sdiv"></div>
+      <select class="sloc" id="hloc">
+        <option value="">Бүх байршил</option>
+        <option>Сүхбаатар дүүрэг</option><option>Хан-Уул дүүрэг</option>
+        <option>Баянзүрх дүүрэг</option><option>Чингэлтэй дүүрэг</option>
+        <option>Баянгол дүүрэг</option><option>Сонгинохайрхан</option>
+      </select>
+      <button class="sbtn" onclick="doSearch()">Хайх</button>
+    </div>
+    <div class="hero-chips">
+      <span class="hchip" onclick="fgo(&#39;Хүргэлт&#39;)">🛵 Хүргэлт</span>
+      <span class="hchip" onclick="fgo(&#39;Цэвэрлэгч&#39;)">🧹 Цэвэрлэгч</span>
+      <span class="hchip" onclick="fgo(&#39;Ачигч&#39;)">📦 Ачигч</span>
+      <span class="hchip" onclick="fgo(&#39;Промоутер&#39;)">📢 Промоутер</span>
+      <span class="hchip" onclick="fgo(&#39;Харуул&#39;)">🔒 Харуул</span>
+      <span class="hchip" onclick="fgo(&#39;Хоол&#39;)">🍽️ Хоол</span>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stats-in">
+      <div class="stat"><div class="stat-n" id="total-cnt">0</div><div class="stat-l">Нийт зар</div></div>
+      <div class="stat"><div class="stat-n" id="worker-cnt">0+</div><div class="stat-l">Ажил хайгч</div></div>
+      <div class="stat"><div class="stat-n" id="company-cnt">0</div><div class="stat-l">Ажил олгогч</div></div>
+      <div class="stat"><div class="stat-n">🆓</div><div class="stat-l">Бүртгэл үнэгүй</div></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="sec-hd"><div class="sec-t">Ажлын ангилал</div><button class="see-all" onclick="sp(&#39;jobs-page&#39;)">Бүгдийг харах →</button></div>
+    <div class="cats-grid" style="margin-bottom:24px">
+      <div class="ccard" onclick="fgo(&#39;Хүргэлт&#39;)"><div class="cico">🛵</div><div class="cname">Хүргэлт</div></div>
+      <div class="ccard" onclick="fgo(&#39;Цэвэрлэгч&#39;)"><div class="cico">🧹</div><div class="cname">Цэвэрлэгч</div></div>
+      <div class="ccard" onclick="fgo(&#39;Ачигч&#39;)"><div class="cico">📦</div><div class="cname">Ачигч</div></div>
+      <div class="ccard" onclick="fgo(&#39;Промоутер&#39;)"><div class="cico">📢</div><div class="cname">Промоутер</div></div>
+      <div class="ccard" onclick="fgo(&#39;Харуул&#39;)"><div class="cico">🔒</div><div class="cname">Харуул</div></div>
+      <div class="ccard" onclick="fgo(&#39;Хоол&#39;)"><div class="cico">🍽️</div><div class="cname">Хоол, ресторан</div></div>
+      <div class="ccard" onclick="fgo(&#39;Угаалга&#39;)"><div class="cico">🚿</div><div class="cname">Угаалга</div></div>
+      <div class="ccard" onclick="fgo(&#39;Тараагч&#39;)"><div class="cico">📰</div><div class="cname">Тараагч</div></div>
+    </div>
+    <div class="sec-hd"><div class="sec-t">⚡ Шинэ зарууд</div><button class="see-all" onclick="sp(&#39;jobs-page&#39;)">Бүгдийг харах →</button></div>
+    <div class="jlist" id="home-jobs"><div class="jcard" onclick="showDet(undefined)">
+    <div class="jico">💼</div>
+    <div class="jbody">
+      <div class="jtop"><div class="jname">test2</div><span class="badge bn">Шинэ</span></div>
+      <div class="jco">sst</div>
+      <div class="jtags"><span class="jtag">📍 Сонгинохайрхан</span><span class="jtag">⏰ 07:00-11:00</span><span class="jtag">🏷️ Бусад</span></div>
+    </div>
+    <div class="jright">
+      <div class="jpay">10,000₮<span class="jpu">/цаг</span></div>
+      <div class="jday">~80,000₮/өдөр</div>
+      <div class="jtime">5 минутын өмнө</div>
+      <button class="jbtn" onclick="event.stopPropagation();checkAndPay(&#39;99111111&#39;)">📞 Холбоо — 10,000₮</button>
+    </div>
+  </div><div class="jcard" onclick="showDet(undefined)">
+    <div class="jico">💼</div>
+    <div class="jbody">
+      <div class="jtop"><div class="jname">Дизайнер</div><span class="badge bn">Шинэ</span></div>
+      <div class="jco">gumusservi</div>
+      <div class="jtags"><span class="jtag">📍 Сүхбаатар дүүрэг</span><span class="jtag">⏰ Хүссэн цагаараа</span><span class="jtag">🏷️ Бусад</span></div>
+    </div>
+    <div class="jright">
+      <div class="jpay">100,000₮<span class="jpu">/цаг</span></div>
+      <div class="jday">~800,000₮/өдөр</div>
+      <div class="jtime">23 минутын өмнө</div>
+      <button class="jbtn" onclick="event.stopPropagation();checkAndPay(&#39;80043478&#39;)">📞 Холбоо — 10,000₮</button>
+    </div>
+  </div><div class="jcard" onclick="showDet(undefined)">
+    <div class="jico">🧹</div>
+    <div class="jbody">
+      <div class="jtop"><div class="jname">test</div><span class="badge bn">Шинэ</span></div>
+      <div class="jco"></div>
+      <div class="jtags"><span class="jtag">📍 Хан-Уул дүүрэг</span><span class="jtag">⏰ 09:00-18:00</span><span class="jtag">🏷️ Цэвэрлэгч</span></div>
+    </div>
+    <div class="jright">
+      <div class="jpay">7,500₮<span class="jpu">/цаг</span></div>
+      <div class="jday">~60,000₮/өдөр</div>
+      <div class="jtime">29 минутын өмнө</div>
+      <button class="jbtn" onclick="event.stopPropagation();checkAndPay(&#39;88111111&#39;)">📞 Холбоо — 10,000₮</button>
+    </div>
+  </div></div>
+    <div class="ref-banner" style="margin-top:24px">
+      <div class="rb-text">
+        <h3>🎁 Найзаа урьж бонус ав</h3>
+        <p>Найз нь ажил олоход цалингийн 10% бонус авна</p>
+      </div>
+      <button class="btn-prim" onclick="sp(&#39;ref-page&#39;)">Урилгын код авах →</button>
+    </div>
+  </div>
+</div>
+
+<!-- JOBS PAGE -->
+<div id="jobs-page" class="page">
+  <div class="wrap">
+    <div class="two-col">
+      <div>
+        <div class="filter-box">
+          <div class="fb-title">Ангилал</div>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Хүргэлт" class="cf"> Хүргэлт</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Цэвэрлэгч" class="cf"> Цэвэрлэгч</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Ачигч" class="cf"> Ачигч</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Промоутер" class="cf"> Промоутер</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Харуул" class="cf"> Харуул</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Хоол" class="cf"> Хоол, ресторан</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Угаалга" class="cf"> Угаалга</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Тараагч" class="cf"> Тараагч</label>
+        </div>
+        <div class="filter-box">
+          <div class="fb-title">Байршил</div>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Сүхбаатар" class="lf"> Сүхбаатар</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Хан-Уул" class="lf"> Хан-Уул</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Баянзүрх" class="lf"> Баянзүрх</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Чингэлтэй" class="lf"> Чингэлтэй</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Баянгол" class="lf"> Баянгол</label>
+          <label class="fcheck"><input type="checkbox" onchange="rj()" value="Сонгинохайрхан" class="lf"> Сонгинохайрхан</label>
+        </div>
+        <div class="filter-box">
+          <div class="fb-title">Цалин</div>
+          <label class="fcheck"><input type="radio" name="pay" value="0" checked="" onchange="rj()"> Бүгд</label>
+          <label class="fcheck"><input type="radio" name="pay" value="10000" onchange="rj()"> 10,000₮+/цаг</label>
+          <label class="fcheck"><input type="radio" name="pay" value="15000" onchange="rj()"> 15,000₮+/цаг</label>
+          <label class="fcheck"><input type="radio" name="pay" value="20000" onchange="rj()"> 20,000₮+/цаг</label>
+        </div>
+      </div>
+      <div>
+        <div class="jobs-hd">
+          <div class="jobs-title" id="jt">Бүх зарууд</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="jobs-cnt" id="jc"></span>
+            <select class="sort-sel" onchange="rj()"><option>Шинэ эхэлж</option><option>Цалин өндөр</option></select>
+          </div>
+        </div>
+        <div class="jlist" id="all-jobs"><div class="loading">Зарууд ачааллаж байна...</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DETAIL -->
+<div id="detail-page" class="page">
+  <div style="max-width:1080px;margin:0 auto;padding:20px 24px 0">
+    <button class="back-btn" onclick="goBack()">← Буцах</button>
+  </div>
+  <div class="det-wrap" id="det-content"></div>
+</div>
+
+<!-- POST PAGE -->
+<div id="post-page" class="page">
+  <div class="post-wrap">
+    <div class="page-title">Ажлын зар оруулах</div>
+    <div class="page-sub">Зөвхөн бүртгэлтэй компани зар оруулж болно</div>
+    <div id="post-locked" class="locked-box">
+      <div class="locked-ico">🔒</div>
+      <div class="locked-t">Нэвтрэх шаардлагатай</div>
+      <div class="locked-s">Зар оруулахын тулд компанийн бүртгэлээрээ нэвтэрнэ үү</div>
+      <button class="btn-prim" onclick="sp(&#39;login-page&#39;)" style="margin-right:8px">Нэвтрэх</button>
+      <button class="btn-ghost" onclick="sp(&#39;reg-page&#39;)" style="margin-top:8px">Бүртгүүлэх</button>
+    </div>
+    <div id="post-form" style="display:none">
+      <div class="fcard">
+        <div class="fct">Үндсэн мэдээлэл</div>
+        <div class="fg"><label>Ажлын нэр <span class="req">*</span></label><input type="text" id="pn" placeholder="Жишээ: Хүргэлтийн туслах, Цэвэрлэгч..."></div>
+        <div class="frow">
+          <div class="fg" style="margin:0"><label>Ангилал <span class="req">*</span></label>
+            <select id="pc"><option value="">Сонгох...</option><option>Хүргэлт</option><option>Цэвэрлэгч</option><option>Ачигч</option><option>Промоутер</option><option>Харуул</option><option>Хоол, ресторан</option><option>Угаалга</option><option>Тараагч</option><option>Бусад</option></select>
+          </div>
+          <div class="fg" style="margin:0"><label>Байршил <span class="req">*</span></label>
+            <select id="pl"><option>Сүхбаатар дүүрэг</option><option>Хан-Уул дүүрэг</option><option>Баянзүрх дүүрэг</option><option>Чингэлтэй дүүрэг</option><option>Баянгол дүүрэг</option><option>Сонгинохайрхан</option></select>
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg" style="margin:0"><label>Цалин (₮/цаг) <span class="req">*</span></label><input type="number" id="pp" placeholder="15000" min="5000"></div>
+          <div class="fg" style="margin:0"><label>Ажлын цаг</label><input type="text" id="ph" placeholder="09:00–18:00"></div>
+        </div>
+      </div>
+      <div class="fcard">
+        <div class="fct">Дэлгэрэнгүй мэдээлэл</div>
+        <div class="fg"><label>Ажлын тайлбар <span class="req">*</span></label><textarea id="pd" placeholder="Ажилчнаас юу хийхийг хүлээж байгааг тайлбарлана уу..."></textarea></div>
+        <div class="fg"><label>Шаардлага</label><textarea id="pr" placeholder="Мөр мөрөөр бичнэ үү..." style="min-height:65px"></textarea></div>
+      </div>
+      <div class="fcard">
+        <div class="fct">Холбоо барих</div>
+        <div class="fg"><label>Утасны дугаар <span class="req">*</span></label><input type="tel" id="pph" placeholder="99001122"></div>
+      </div>
+      <button class="fsub" id="postBtn" onclick="submitPost()">Зар нийтлэх — Үнэгүй</button>
+      <div class="succ" id="post-ok">✓ Зар амжилттай нийтлэгдлээ!</div>
+      <div class="err-msg" id="post-err"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="login-page" class="page">
+  <div class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-t">Нэвтрэх</div>
+      <div class="auth-s">Webee-д тавтай морил</div>
+      <div class="atabs">
+        <button class="atab active" id="lt0" onclick="switchLoginTab(0)">Ажил хайгч</button>
+        <button class="atab" id="lt1" onclick="switchLoginTab(1)">Компани</button>
+      </div>
+      <div class="fg"><label>Утасны дугаар</label><input type="tel" id="lphone" placeholder="99001122"></div>
+      <div class="fg"><label>Нууц үг</label><input type="password" id="lpass" placeholder="••••••••"></div>
+      <button class="fsub" onclick="doLogin()" style="margin-top:4px">Нэвтрэх</button>
+      <div class="err-msg" id="login-err"></div>
+      <div class="divider">эсвэл</div>
+      <p style="text-align:center;font-size:12px;color:var(--t2)">Бүртгэл байхгүй юу? <a onclick="sp(&#39;reg-page&#39;)" style="color:var(--p);font-weight:600;cursor:pointer">Бүртгүүлэх</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTER -->
+<div id="reg-page" class="page">
+  <div class="auth-wrap" style="align-items:flex-start;padding-top:32px">
+    <div class="auth-card" style="max-width:460px">
+      <div class="auth-t">Бүртгүүлэх</div>
+      <div class="auth-s">Үнэгүй бүртгүүлж эхэлнэ үү</div>
+      <div class="atabs">
+        <button class="atab active" id="rt0" onclick="switchRegTab(0)">Ажил хайгч</button>
+        <button class="atab" id="rt1" onclick="switchRegTab(1)">Компани</button>
+      </div>
+
+      <!-- WORKER FORM -->
+      <div id="worker-form">
+        <div class="fg"><label>Овог нэр <span class="req">*</span></label><input type="text" id="wname" placeholder="Таны бүтэн нэр"></div>
+        <div class="fg"><label>Утасны дугаар <span class="req">*</span></label><input type="tel" id="wphone" placeholder="99001122"></div>
+        <div class="fg"><label>Байршил</label>
+          <select id="wloc"><option>Сүхбаатар дүүрэг</option><option>Хан-Уул дүүрэг</option><option>Баянзүрх дүүрэг</option><option>Чингэлтэй дүүрэг</option><option>Баянгол дүүрэг</option><option>Сонгинохайрхан</option></select>
+        </div>
+        <div class="fg"><label>Найзын урилгын код</label><input type="text" id="wref" placeholder="Жишээ: WEBEE-7X9K (заавал биш)"></div>
+        <div class="fg"><label>Нууц үг <span class="req">*</span></label><input type="password" id="wpass" placeholder="8+ тэмдэгт"></div>
+        <div class="fg">
+          <label>Чадвар сонгох <span style="font-weight:400;color:var(--t3)">(дор хаяж 1)</span></label>
+          <div class="skills-grid" id="skillsGrid"><div class="sk-chip" onclick="toggleSk(0)">🛵 Мотоцикль жолоодох</div><div class="sk-chip" onclick="toggleSk(1)">🚗 Машин жолоодох</div><div class="sk-chip" onclick="toggleSk(2)">📦 Ачаа зөөх</div><div class="sk-chip" onclick="toggleSk(3)">🧹 Цэвэрлэгч</div><div class="sk-chip" onclick="toggleSk(4)">🍳 Хоол хийх</div><div class="sk-chip" onclick="toggleSk(5)">🔧 Засвар үйлчилгээ</div><div class="sk-chip" onclick="toggleSk(6)">💪 Биеийн хүч</div><div class="sk-chip" onclick="toggleSk(7)">📢 Худалдаа, сурталчилгаа</div><div class="sk-chip" onclick="toggleSk(8)">🔒 Хамгаалалт, харуул</div><div class="sk-chip" onclick="toggleSk(9)">🚿 Угаалга, арчилгаа</div><div class="sk-chip" onclick="toggleSk(10)">📱 Гар утас, апп ашиглах</div><div class="sk-chip" onclick="toggleSk(11)">💬 Харилцааны чадвар</div><div class="sk-chip" onclick="toggleSk(12)">🏃 Хурдан, идэвхтэй</div><div class="sk-chip" onclick="toggleSk(13)">🌙 Шөнийн ээлж</div><div class="sk-chip" onclick="toggleSk(14)">📝 Бичиг цаасны ажил</div><div class="sk-chip" onclick="toggleSk(15)">🎤 Нийтэч, олон нийттэй</div><div class="sk-chip" onclick="toggleSk(16)">🏗️ Барилга, хөдөлмөр</div><div class="sk-chip" onclick="toggleSk(17)">🌿 Гадна, цэцэрлэгийн ажил</div><div class="sk-chip" onclick="toggleSk(18)">👶 Хүүхэд асрах</div><div class="sk-chip" onclick="toggleSk(19)">🐕 Амьтан асрах</div></div>
+          <div class="sk-cnt">Сонгосон: <span id="skCnt" style="font-weight:600;color:var(--p)">0</span> чадвар</div>
+        </div>
+        <button class="fsub" onclick="regWorker()">Бүртгүүлэх</button>
+        <div class="err-msg" id="worker-err"></div>
+      </div>
+
+      <!-- COMPANY FORM -->
+      <div id="company-form" style="display:none">
+        <div class="fg"><label>Компанийн нэр <span class="req">*</span></label><input type="text" id="cname" placeholder="Таны компанийн нэр"></div>
+        <div class="fg"><label>Утасны дугаар <span class="req">*</span></label><input type="tel" id="cphone" placeholder="99001122"></div>
+        <div class="fg"><label>И-мэйл</label><input type="email" id="cemail" placeholder="info@company.mn"></div>
+        <div class="fg"><label>Нууц үг <span class="req">*</span></label><input type="password" id="cpass" placeholder="8+ тэмдэгт"></div>
+        <button class="fsub" onclick="regCompany()">Бүртгүүлэх</button>
+        <div class="err-msg" id="company-err"></div>
+      </div>
+
+      <div class="divider">эсвэл</div>
+      <p style="text-align:center;font-size:12px;color:var(--t2)">Бүртгэлтэй юу? <a onclick="sp(&#39;login-page&#39;)" style="color:var(--p);font-weight:600;cursor:pointer">Нэвтрэх</a></p>
+    </div>
+  </div>
+</div>
+
+<!-- PROFILE -->
+<div id="profile-page" class="page">
+  <div class="prof-wrap" id="prof-content"></div>
+</div>
+
+<!-- REFERRAL -->
+<div id="ref-page" class="page">
+  <div class="ref-wrap">
+    <div class="ref-hero">
+      <h2>🎁 Найзаа урьж бонус ав</h2>
+      <p>Найз нь Webee-ээр ажил олоход таны данс руу бонус орно</p>
+      <div class="ref-code-box">
+        <div class="ref-code" id="myCode">—</div>
+        <div class="ref-lbl">Таны урилгын код</div>
+        <button class="copy-btn" onclick="copyCode()">Код хуулах</button>
+      </div>
+    </div>
+    <div class="ref-stats">
+      <div class="rstat"><div class="rstat-ico">👥</div><div class="rstat-n">0</div><div class="rstat-l">Урьсан найз</div></div>
+      <div class="rstat"><div class="rstat-ico">✅</div><div class="rstat-n">0</div><div class="rstat-l">Ажилд орсон</div></div>
+      <div class="rstat"><div class="rstat-ico">💰</div><div class="rstat-n">0₮</div><div class="rstat-l">Нийт бонус</div></div>
+    </div>
+    <div class="how-card">
+      <div class="how-t">Яаж ажилладаг вэ?</div>
+      <div class="how-step"><div class="hsn">1</div><div class="hst"><strong>Код хуваалцана</strong>Урилгын кодоо найз нөхөддөө илгээнэ</div></div>
+      <div class="how-step"><div class="hsn">2</div><div class="hst"><strong>Найз нь бүртгүүлнэ</strong>Найз нь Webee-д таны кодоор бүртгүүлнэ</div></div>
+      <div class="how-step"><div class="hsn">3</div><div class="hst"><strong>Найз нь ажил олно</strong>Webee-ээр ажил олж эхэлнэ</div></div>
+      <div class="how-step"><div class="hsn">4</div><div class="hst"><strong>Та бонус авна</strong>Найзын анхны цалингийн 10%-ийг авна</div></div>
+      <div class="bonus-box">
+        <div class="bonus-n">Жишээ: Найз 180,000₮ цалин авбал → та 18,000₮ бонус авна</div>
+        <div class="bonus-l">Урьсан найз тоо нэмэгдэх тусам бонус нэмэгдэнэ</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── SUPABASE ──
+const SB = 'https://ddcqzzbqeiilpbeqrqgu.supabase.co';
+const KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkY3F6emJxZWlpbHBiZXFycWd1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzg2NTk4MTAsImV4cCI6MjA5NDIzNTgxMH0.KCNCl3cvwaGs52cOVCHSayKOVTMn5Btz7usEA3O3dj0';
+const H = {'apikey':KEY,'Authorization':'Bearer '+KEY,'Content-Type':'application/json','Prefer':'return=representation'};
+
+async function sbGet(table, query='') {
+  const r = await fetch(`${SB}/rest/v1/${table}?${query}`, {headers:H});
+  if(!r.ok) return [];
+  return r.json();
+}
+async function sbPost(table, data) {
+  const r = await fetch(`${SB}/rest/v1/${table}`, {method:'POST',headers:H,body:JSON.stringify(data)});
+  if(!r.ok) { const e=await r.text(); throw new Error(e); }
+  return r.json();
+}
+
+// ── AUTH STATE ──
+let currentUser = JSON.parse(localStorage.getItem('webee_user') || 'null');
+let currentType = localStorage.getItem('webee_type') || null; // 'worker' | 'company'
+
+function setUser(user, type) {
+  currentUser = user;
+  currentType = type;
+  localStorage.setItem('webee_user', JSON.stringify(user));
+  localStorage.setItem('webee_type', type);
+  updateNav();
+}
+function logout() {
+  currentUser = null; currentType = null;
+  localStorage.removeItem('webee_user');
+  localStorage.removeItem('webee_type');
+  updateNav();
+  sp('home');
+}
+function updateNav() {
+  const nr = document.getElementById('navRight');
+  const navLinks = document.getElementById('navLinks');
+
+  if(currentUser) {
+    const initial = (currentUser.name||'?')[0].toUpperCase();
+    const isCompany = currentType === 'company';
+
+    // Nav links
+    document.getElementById('np').style.display = isCompany ? 'inline-flex' : 'none';
+    document.getElementById('nr').style.display = !isCompany ? 'inline-flex' : 'none';
+
+    nr.innerHTML = `<div class="user-info"><div class="user-av">${initial}</div><span>${currentUser.name}</span></div>
+      <button class="btn-ghost" onclick="sp('profile-page')">Профайл</button>
+      <button class="btn-ghost" onclick="logout()">Гарах</button>`;
+  } else {
+    // Show all nav links when logged out
+    document.getElementById('np').style.display = 'inline-flex';
+    document.getElementById('nr').style.display = 'inline-flex';
+
+    nr.innerHTML = `<button class="btn-ghost" onclick="sp('login-page')">Нэвтрэх</button>
+      <button class="btn-prim" onclick="sp('reg-page')">Бүртгүүлэх</button>`;
+  }
+}
+
+// ── JOBS ──
+const CAT_ICONS = {'Хүргэлт':'🛵','Цэвэрлэгч':'🧹','Ачигч':'📦','Промоутер':'📢','Харуул':'🔒','Хоол, ресторан':'🍽️','Угаалга':'🚿','Тараагч':'📰','Бусад':'💼'};
+function ico(cat){return CAT_ICONS[cat]||'💼';}
+function ago(d){
+  const m=Math.floor((Date.now()-new Date(d))/60000);
+  const h=Math.floor(m/60),dd=Math.floor(h/24);
+  if(dd>0)return dd+' өдрийн өмнө';
+  if(h>0)return h+' цагийн өмнө';
+  return (m||1)+' минутын өмнө';
+}
+
+let allJobs=[], curCat='', prev='home', curPhone='';
+
+function jcard(j){
+  const daily=(j.pay||0)*8;
+  return `<div class="jcard" onclick="showDet(${j.id})">
+    <div class="jico">${ico(j.category)}</div>
+    <div class="jbody">
+      <div class="jtop"><div class="jname">${j.name}</div><span class="badge bn">Шинэ</span></div>
+      <div class="jco">${j.company||''}</div>
+      <div class="jtags"><span class="jtag">📍 ${j.location||''}</span><span class="jtag">⏰ ${j.hours||'Уян хатан'}</span><span class="jtag">🏷️ ${j.category||''}</span></div>
+    </div>
+    <div class="jright">
+      <div class="jpay">${(j.pay||0).toLocaleString()}₮<span class="jpu">/цаг</span></div>
+      <div class="jday">~${daily.toLocaleString()}₮/өдөр</div>
+      <div class="jtime">${j.created_at?ago(j.created_at):''}</div>
+      <button class="jbtn" onclick="event.stopPropagation();checkAndPay('${j.phone||''}')">📞 Холбоо — 10,000₮</button>
+    </div>
+  </div>`;
+}
+
+async function loadHome(){
+  const el=document.getElementById('home-jobs');
+  el.innerHTML='<div class="loading">Ачааллаж байна...</div>';
+  const jobs=await sbGet('jobs','select=*&order=created_at.desc&limit=4');
+  allJobs=jobs;
+  const total=await sbGet('jobs','select=id');
+  document.getElementById('total-cnt').textContent=total.length;
+  const wc=await sbGet('workers','select=id');
+  document.getElementById('worker-cnt').textContent=wc.length+'+';
+  const cc=await sbGet('companies','select=id');
+  document.getElementById('company-cnt').textContent=cc.length;
+  el.innerHTML=jobs.length?jobs.map(jcard).join(''):'<div class="empty"><div class="empty-ico">📋</div><div class="empty-t">Одоогоор зар байхгүй</div><div>Эхний зарыг оруулаарай!</div></div>';
+}
+
+async function rj(){
+  const el=document.getElementById('all-jobs');
+  el.innerHTML='<div class="loading">Ачааллаж байна...</div>';
+  const cats=[...document.querySelectorAll('.cf:checked')].map(c=>c.value);
+  const locs=[...document.querySelectorAll('.lf:checked')].map(c=>c.value);
+  const pay=parseInt(document.querySelector('input[name=pay]:checked')?.value||0);
+  let jobs=await sbGet('jobs','select=*&order=created_at.desc');
+  allJobs=[...allJobs,...jobs].filter((j,i,a)=>a.findIndex(x=>x.id===j.id)===i);
+  if(curCat) jobs=jobs.filter(j=>j.category===curCat);
+  else if(cats.length) jobs=jobs.filter(j=>cats.some(c=>(j.category||'').includes(c)));
+  if(locs.length) jobs=jobs.filter(j=>locs.some(l=>(j.location||'').includes(l)));
+  if(pay) jobs=jobs.filter(j=>(j.pay||0)>=pay);
+  document.getElementById('jt').textContent=curCat?curCat+' зарууд':'Бүх зарууд';
+  document.getElementById('jc').textContent=jobs.length+' ажил';
+  el.innerHTML=jobs.length?jobs.map(jcard).join(''):'<div class="empty"><div class="empty-ico">🔍</div><div class="empty-t">Зар олдсонгүй</div><div>Өөр шүүлтүүр ашиглаарай</div></div>';
+}
+
+function showDet(id){
+  const j=allJobs.find(x=>x.id===id);
+  if(!j)return;
+  const daily=(j.pay||0)*8;
+  document.getElementById('det-content').innerHTML=`
+    <div class="dcard">
+      <div class="dhd"><div class="dico">${ico(j.category)}</div><div><div class="dt">${j.name}</div><div class="dco">${j.company||''}</div></div></div>
+      <div class="dmeta"><div class="dmi">📍 ${j.location||''}</div><div class="dmi">⏰ ${j.hours||'Уян хатан'}</div><div class="dmi">🏷️ ${j.category||''}</div></div>
+      <div class="dst">Ажлын тайлбар</div><div class="dd">${j.description||''}</div>
+      ${j.requirements?`<div class="dst">Шаардлага</div><div class="dd"><ul>${j.requirements.split('\n').filter(r=>r.trim()).map(r=>`<li>${r.trim()}</li>`).join('')}</ul></div>`:''}
+    </div>
+    <div>
+      <div class="scard">
+        <div style="font-size:11px;color:var(--t3);margin-bottom:2px">Цагийн цалин</div>
+        <div class="bigpay">${(j.pay||0).toLocaleString()}₮<span style="font-size:12px;color:var(--t3);font-weight:400">/цаг</span></div>
+        <div class="bigday">Өдөрт ~${daily.toLocaleString()}₮</div>
+        <button class="det-btn" onclick="checkAndPay('${j.phone||''}')">📞 Холбоо харах — 10,000₮</button>
+      </div>
+      <div class="warn-box">⚠️ Холбоо мэдээлэл харахад <strong>10,000₮</strong> шаардлагатай. Зөвхөн өнөөдрийн <strong>23:59</strong> хүртэл хүчинтэй.</div>
+    </div>`;
+  prev=document.querySelector('.page.active')?.id||'home';
+  sp('detail-page');
+}
+
+function checkAndPay(phone){
+  if(!currentUser){
+    alert('Холбоо мэдээлэл харахын тулд эхлээд бүртгүүлнэ үү!');
+    sp('reg-page'); return;
+  }
+  openPay(phone);
+}
+
+// ── POST ──
+function showPostForm(){
+  if(currentUser && currentType==='company'){
+    document.getElementById('post-locked').style.display='none';
+    document.getElementById('post-form').style.display='block';
+  } else {
+    document.getElementById('post-locked').style.display='block';
+    document.getElementById('post-form').style.display='none';
+  }
+}
+
+async function submitPost(){
+  const n=document.getElementById('pn').value.trim();
+  const cat=document.getElementById('pc').value;
+  const loc=document.getElementById('pl').value;
+  const pay=parseInt(document.getElementById('pp').value);
+  const desc=document.getElementById('pd').value.trim();
+  const ph=document.getElementById('pph').value.trim();
+  const errEl=document.getElementById('post-err');
+  if(!n||!cat||!desc||!ph){errEl.textContent='Заавал бөглөх талбаруудыг бүрэн бөглөнө үү!';errEl.style.display='block';return;}
+  if(!pay||pay<5000){errEl.textContent='Цалин 5,000₮-өөс дээш байх ёстой!';errEl.style.display='block';return;}
+  errEl.style.display='none';
+  const btn=document.getElementById('postBtn');
+  btn.disabled=true;btn.textContent='Нийтлэж байна...';
+  try{
+    await sbPost('jobs',{
+      name:n,company:currentUser.name,category:cat,location:loc,pay:pay,
+      hours:document.getElementById('ph').value.trim(),description:desc,
+      requirements:document.getElementById('pr')?.value.trim()||'',
+      phone:ph,company_id:currentUser.id,created_at:new Date().toISOString()
+    });
+    document.getElementById('post-ok').style.display='block';
+    ['pn','pp','pd','pr','pph','ph'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+    document.getElementById('pc').value='';
+    setTimeout(()=>document.getElementById('post-ok').style.display='none',5000);
+  }catch(e){errEl.textContent='Алдаа: '+e.message;errEl.style.display='block';}
+  btn.disabled=false;btn.textContent='Зар нийтлэх — Үнэгүй';
+}
+
+// ── LOGIN ──
+let loginType='worker';
+function switchLoginTab(i){
+  loginType=i===0?'worker':'company';
+  document.getElementById('lt0').classList.toggle('active',i===0);
+  document.getElementById('lt1').classList.toggle('active',i===1);
+}
+
+async function doLogin(){
+  const phone=document.getElementById('lphone').value.trim();
+  const pass=document.getElementById('lpass').value.trim();
+  const errEl=document.getElementById('login-err');
+  if(!phone||!pass){errEl.textContent='Утас болон нууц үгээ оруулна уу!';errEl.style.display='block';return;}
+  errEl.style.display='none';
+  try{
+    const table=loginType==='worker'?'workers':'companies';
+    const users=await sbGet(table,`phone=eq.${phone}&password=eq.${pass}`);
+    if(!users||users.length===0){errEl.textContent='Утас эсвэл нууц үг буруу байна!';errEl.style.display='block';return;}
+    setUser(users[0],loginType);
+    sp('home');
+    loadHome();
+  }catch(e){errEl.textContent='Алдаа: '+e.message;errEl.style.display='block';}
+}
+
+// ── REGISTER ──
+let regType='worker';
+function switchRegTab(i){
+  regType=i===0?'worker':'company';
+  document.getElementById('rt0').classList.toggle('active',i===0);
+  document.getElementById('rt1').classList.toggle('active',i===1);
+  document.getElementById('worker-form').style.display=i===0?'block':'none';
+  document.getElementById('company-form').style.display=i===1?'block':'none';
+}
+
+function genRefCode(){return 'WEBEE-'+Math.random().toString(36).substr(2,4).toUpperCase();}
+
+async function regWorker(){
+  const name=document.getElementById('wname').value.trim();
+  const phone=document.getElementById('wphone').value.trim();
+  const pass=document.getElementById('wpass').value.trim();
+  const errEl=document.getElementById('worker-err');
+  if(!name||!phone||!pass){errEl.textContent='Нэр, утас, нууц үгээ оруулна уу!';errEl.style.display='block';return;}
+  if(pass.length<8){errEl.textContent='Нууц үг дор хаяж 8 тэмдэгт байх ёстой!';errEl.style.display='block';return;}
+  if(selSkills.size===0){errEl.textContent='Дор хаяж 1 чадвар сонгоно уу!';errEl.style.display='block';return;}
+  errEl.style.display='none';
+  try{
+    const skills=SKILLS.filter((_,i)=>selSkills.has(i)).map(s=>s.n).join(', ');
+    const ref_code=genRefCode();
+    const data=await sbPost('workers',{
+      name,phone,password:pass,
+      location:document.getElementById('wloc').value,
+      skills,ref_code,
+      referred_by:document.getElementById('wref').value.trim()||null,
+      created_at:new Date().toISOString()
+    });
+    setUser(Array.isArray(data)?data[0]:data,'worker');
+    document.getElementById('myCode').textContent=ref_code;
+    sp('profile-page');renderProfile();
+  }catch(e){errEl.textContent='Алдаа: '+e.message;errEl.style.display='block';}
+}
+
+async function regCompany(){
+  const name=document.getElementById('cname').value.trim();
+  const phone=document.getElementById('cphone').value.trim();
+  const pass=document.getElementById('cpass').value.trim();
+  const errEl=document.getElementById('company-err');
+  if(!name||!phone||!pass){errEl.textContent='Компанийн нэр, утас, нууц үгээ оруулна уу!';errEl.style.display='block';return;}
+  if(pass.length<8){errEl.textContent='Нууц үг дор хаяж 8 тэмдэгт байх ёстой!';errEl.style.display='block';return;}
+  errEl.style.display='none';
+  try{
+    const data=await sbPost('companies',{
+      name,phone,email:document.getElementById('cemail').value.trim(),
+      password:pass,approved:true,created_at:new Date().toISOString()
+    });
+    setUser(Array.isArray(data)?data[0]:data,'company');
+    sp('profile-page');renderProfile();
+  }catch(e){errEl.textContent='Алдаа: '+e.message;errEl.style.display='block';}
+}
+
+// ── PROFILE ──
+function renderProfile(){
+  if(!currentUser){sp('login-page');return;}
+  const isWorker=currentType==='worker';
+  document.getElementById('prof-content').innerHTML=`
+    <div class="prof-hd">
+      <div class="prof-av">${(currentUser.name||'?')[0].toUpperCase()}</div>
+      <div><div class="prof-name">${currentUser.name}</div>
+      <div class="prof-role">${isWorker?'Ажил хайгч':'Ажил олгогч'} • ${currentUser.location||''}</div></div>
+      ${isWorker?`<button onclick="sp('ref-page')" style="margin-left:auto;background:rgba(255,255,255,.15);color:#fff;border:none;font-family:inherit;font-size:12px;font-weight:600;padding:7px 14px;border-radius:var(--radfull)">🎁 Урилга</button>`:''}
+    </div>
+    <div class="prof-grid">
+      <div class="pc">
+        <div class="pct">Хувийн мэдээлэл</div>
+        <div class="pr"><span>Нэр</span><span>${currentUser.name||'—'}</span></div>
+        <div class="pr"><span>Утас</span><span>${currentUser.phone||'—'}</span></div>
+        ${currentUser.location?`<div class="pr"><span>Байршил</span><span>${currentUser.location}</span></div>`:''}
+        ${isWorker&&currentUser.ref_code?`<div class="pr"><span>Урилгын код</span><span style="color:var(--p);font-weight:600">${currentUser.ref_code}</span></div>`:''}
+        ${isWorker&&currentUser.skills?`<div class="pr"><span>Чадварууд</span><span style="font-size:12px;text-align:right;max-width:180px">${currentUser.skills}</span></div>`:''}
+      </div>
+      <div class="pc">
+        <div class="pct">${isWorker?'Статистик':'Компанийн мэдээлэл'}</div>
+        ${isWorker?`
+          <div class="pr"><span>Урилгын код</span><span style="color:var(--p);font-weight:600">${currentUser.ref_code||'—'}</span></div>
+          <div class="pr"><span>Бүртгүүлсэн</span><span>${currentUser.created_at?new Date(currentUser.created_at).toLocaleDateString('mn-MN'):'—'}</span></div>
+        `:`
+          <div class="pr"><span>Утас</span><span>${currentUser.phone||'—'}</span></div>
+          <div class="pr"><span>И-мэйл</span><span>${currentUser.email||'—'}</span></div>
+          <div class="pr"><span>Төлөв</span><span style="color:var(--g);font-weight:600">Идэвхтэй</span></div>
+        `}
+      </div>
+    </div>
+    ${!isWorker?`<div style="margin-top:14px"><button class="btn-prim" onclick="sp('post-page')">+ Зар оруулах</button></div>`:''}
+  `;
+  if(isWorker&&currentUser.ref_code) document.getElementById('myCode').textContent=currentUser.ref_code;
+}
+
+// ── MODAL ──
+function openPay(ph){
+  curPhone=ph;
+  document.getElementById('payModal').classList.add('open');
+  document.getElementById('pay-sec').style.display='block';
+  document.getElementById('revealed').classList.remove('show');
+  document.getElementById('txnIn').value='';
+}
+function closeModal(){document.getElementById('payModal').classList.remove('open');}
+function confirmPay(){
+  const t=document.getElementById('txnIn').value.trim();
+  if(!t){alert('Гүйлгээний дугаарыг оруулна уу!');return;}
+  document.getElementById('pay-sec').style.display='none';
+  document.getElementById('revPhone').textContent=curPhone||'Холбоо мэдээлэл байхгүй';
+  document.getElementById('revealed').classList.add('show');
+}
+
+// ── NAV ──
+function sp(n){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(n).classList.add('active');
+  document.querySelectorAll('.nl').forEach(a=>a.classList.remove('active'));
+  const m={home:'nh','jobs-page':'nj','post-page':'np','ref-page':'nr'};
+  if(m[n])document.getElementById(m[n]).classList.add('active');
+  if(n==='jobs-page')rj();
+  if(n==='post-page')showPostForm();
+  if(n==='profile-page')renderProfile();
+  window.scrollTo(0,0);
+}
+function fgo(c){curCat=c;sp('jobs-page');}
+function doSearch(){curCat='';sp('jobs-page');}
+function goBack(){sp(prev);}
+
+// ── SKILLS ──
+const SKILLS=[
+  {i:'🛵',n:'Мотоцикль жолоодох'},{i:'🚗',n:'Машин жолоодох'},
+  {i:'📦',n:'Ачаа зөөх'},{i:'🧹',n:'Цэвэрлэгч'},
+  {i:'🍳',n:'Хоол хийх'},{i:'🔧',n:'Засвар үйлчилгээ'},
+  {i:'💪',n:'Биеийн хүч'},{i:'📢',n:'Худалдаа, сурталчилгаа'},
+  {i:'🔒',n:'Хамгаалалт, харуул'},{i:'🚿',n:'Угаалга, арчилгаа'},
+  {i:'📱',n:'Гар утас, апп ашиглах'},{i:'💬',n:'Харилцааны чадвар'},
+  {i:'🏃',n:'Хурдан, идэвхтэй'},{i:'🌙',n:'Шөнийн ээлж'},
+  {i:'📝',n:'Бичиг цаасны ажил'},{i:'🎤',n:'Нийтэч, олон нийттэй'},
+  {i:'🏗️',n:'Барилга, хөдөлмөр'},{i:'🌿',n:'Гадна, цэцэрлэгийн ажил'},
+  {i:'👶',n:'Хүүхэд асрах'},{i:'🐕',n:'Амьтан асрах'},
+];
+let selSkills=new Set();
+function renderSkills(){
+  const g=document.getElementById('skillsGrid');if(!g)return;
+  g.innerHTML=SKILLS.map((s,i)=>`<div class="sk-chip${selSkills.has(i)?' sel':''}" onclick="toggleSk(${i})">${s.i} ${s.n}</div>`).join('');
+  document.getElementById('skCnt').textContent=selSkills.size;
+}
+function toggleSk(i){selSkills.has(i)?selSkills.delete(i):selSkills.add(i);renderSkills();}
+
+function copyCode(){
+  const c=document.getElementById('myCode').textContent;
+  navigator.clipboard.writeText(c).then(()=>alert('Урилгын код хуулагдлаа: '+c));
+}
+
+document.getElementById('payModal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+
+// ── INIT ──
+updateNav();
+loadHome();
+setTimeout(renderSkills,100);
+if(currentUser) document.getElementById('myCode').textContent=currentUser.ref_code||'—';
+</script>
+</body></html>
